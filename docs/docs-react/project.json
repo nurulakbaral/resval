@@ -15,10 +15,7 @@
         "main": "docs/docs-react/src/main.tsx",
         "polyfills": "docs/docs-react/src/polyfills.ts",
         "tsConfig": "docs/docs-react/tsconfig.app.json",
-        "assets": [
-          "docs/docs-react/src/favicon.ico",
-          "docs/docs-react/src/assets"
-        ],
+        "assets": ["docs/docs-react/src/favicon.ico", "docs/docs-react/src/assets"],
         "styles": ["docs/docs-react/src/styles.css"],
         "scripts": [],
         "webpackConfig": "@nrwl/react/plugins/webpack"
