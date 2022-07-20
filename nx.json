@@ -13,9 +13,10 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "nx/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "OTYxNjRkZDUtYzI1MS00MTAyLWE0ZWItYjc1NzQ0MjEyMTE1fHJlYWQtd3JpdGU="
       }
     }
   },
@@ -39,6 +40,10 @@
         "linter": "eslint"
       }
     }
+  },
+  "workspaceLayout": {
+    "appsDir": "docs",
+    "libsDir": "packages"
   },
   "defaultProject": "docs-react"
 }

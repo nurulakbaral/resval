@@ -2,7 +2,8 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
-    "docs-react": "apps/docs-react",
-    "docs-react-e2e": "apps/docs-react-e2e"
+    "docs-react": "docs/docs-react",
+    "docs-react-e2e": "docs/docs-react-e2e",
+    "react-responsive-values": "packages/react-responsive-values"
   }
 }
