@@ -54,30 +54,21 @@ export function trackBreakpoints<TTypeBreakpointTrack extends Array<TBreakpoints
   let isQueryDefined: TTypeBreakpointsQuery[keyof TTypeBreakpointsQuery] | string = ''
   let currentBreakpoints: TBreakpointsTrack = { ...initBreakpoints }
   let snapshotBreakpoints: TBreakpointsTrack = { ...initBreakpoints }
+  let idx = media === 'min' ? breakpointsTrack.length - 1 : 0
 
-  if (media === 'min') {
-    for (let i = breakpointsTrack.length - 1; i >= 0; i--) {
-      isQueryDefined = breakpointsQuery[breakpointsTrack[i].query as keyof TTypeBreakpointsQuery]
-      if (breakpointsTrack[i].status && !isCurrentBreakpointsFound) {
-        currentBreakpoints = { ...breakpointsTrack[i] }
-        isCurrentBreakpointsFound = true
-      }
-      if (breakpointsTrack[i].status && isQueryDefined) {
-        snapshotBreakpoints = { ...breakpointsTrack[i] }
-        break
-      }
+  /**
+   * @description Track the breakpoints and return the current breakpoints.
+   */
+
+  for (let i = idx; media === 'min' ? i >= 0 : i < breakpointsTrack.length; media === 'min' ? i-- : i++) {
+    isQueryDefined = breakpointsQuery[breakpointsTrack[i].query as keyof TTypeBreakpointsQuery]
+    if (breakpointsTrack[i].status && !isCurrentBreakpointsFound) {
+      currentBreakpoints = { ...breakpointsTrack[i] }
+      isCurrentBreakpointsFound = true
     }
-  } else {
-    for (let i = 0; i < breakpointsTrack.length; i++) {
-      isQueryDefined = breakpointsQuery[breakpointsTrack[i].query as keyof TTypeBreakpointsQuery]
-      if (breakpointsTrack[i].status && !isCurrentBreakpointsFound) {
-        currentBreakpoints = { ...breakpointsTrack[i] }
-        isCurrentBreakpointsFound = true
-      }
-      if (breakpointsTrack[i].status && isQueryDefined) {
-        snapshotBreakpoints = { ...breakpointsTrack[i] }
-        break
-      }
+    if (breakpointsTrack[i].status && isQueryDefined) {
+      snapshotBreakpoints = { ...breakpointsTrack[i] }
+      break
     }
   }
 
@@ -112,7 +103,10 @@ function setBreakpoints<TTypeBreakpointsOptions extends TBaseObject>(
  *
  */
 
-// Docs: Thnks to https://usehooks-ts.com/react-hook/use-media-query :)
+/**
+ * @docs Thanks to usehooks-ts.com/react-hook/use-media-query.
+ */
+
 export function useMediaQuery(queries: TBaseObject | TDefaultBreakpoints, media: TMedia) {
   // Notes: Get initial breakpoints
   let [matches, setMatches] = React.useState<Array<TBreakpointsTrack> | false>(getMatches(queries))
@@ -138,7 +132,7 @@ export function useMediaQuery(queries: TBaseObject | TDefaultBreakpoints, media:
   }, [])
 
   function getMatches(queries: TBaseObject | TDefaultBreakpoints) {
-    // Prevents SSR issues
+    // Notes: Prevents SSR issues
     if (typeof window !== 'undefined') {
       return Object.entries(queries).map(function ([query, constraintWidth]) {
         return {

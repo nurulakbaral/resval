@@ -1,5 +1,6 @@
 import { createResponsiveValues } from '@resval/react-responsive-values'
 
+// FIXME: Add type for breakpointsQuery
 export function useVx(breakpointsQuery: Record<string, string>) {
   return createResponsiveValues({
     media: 'min',
@@ -9,6 +10,7 @@ export function useVx(breakpointsQuery: Record<string, string>) {
 export default function Home() {
   const value = useVx({
     base: 'base',
+    sm: 'sm',
     md: 'md',
   })
   return (
