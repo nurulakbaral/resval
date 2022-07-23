@@ -1,5 +1,5 @@
 /* eslint-disable prefer-const */
-import type { TDefaultBreakpoints, TBaseObject, TMedia, TBreakpointsTrack } from '../types'
+import type { TDefaultBreakpoints, TBaseObject, TMedia, TBreakpointsTrack } from './types'
 
 export function trackBreakpoints<TTypeBreakpointTrack extends Array<TBreakpointsTrack>, TTypeBreakpointsQuery>(
   breakpointsTrack: TTypeBreakpointTrack,

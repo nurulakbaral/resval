@@ -1,6 +1,6 @@
 /* eslint-disable prefer-const */
 import * as React from 'react'
-import type { TDefaultBreakpoints, TBaseObject, TMedia, TOptions, TBreakpointsTrack } from '../types'
+import type { TDefaultBreakpoints, TBaseObject, TMedia, TOptions, TBreakpointsTrack } from './types'
 import { trackBreakpoints, setBreakpoints } from './utils'
 
 /**
@@ -62,12 +62,14 @@ export function createResponsiveValues<TTypeBreakpointsOptions extends TBaseObje
   let { breakpoints: breakpointsOptions, media = 'min' } = options
   let breakpoints = setBreakpoints(defaultBeakpoints, breakpointsOptions)
 
-  return function useResponsiveValue(breakpointsQuery: Partial<Record<keyof TTypeBreakpointsOptions, string>>) {
+  return function useResponsiveValues<
+    TTypeBreakpointsKeys extends keyof TTypeBreakpointsOptions,
+    TTypeBreakpointsQuery extends Partial<Record<TTypeBreakpointsKeys, any>>,
+  >(breakpointsQuery: TTypeBreakpointsQuery): TTypeBreakpointsQuery[keyof TTypeBreakpointsQuery] | undefined {
     let { breakpointsTrack } = useMediaQuery(breakpoints, media) as { breakpointsTrack: Array<TBreakpointsTrack> }
     let { currentBreakpoints, snapshotBreakpoints } = trackBreakpoints(breakpointsTrack, breakpointsQuery, media)
-    let currentQuery = currentBreakpoints.query
-    let snapshotQuery = snapshotBreakpoints.query
-
+    let currentQuery = currentBreakpoints.query as TTypeBreakpointsKeys
+    let snapshotQuery = snapshotBreakpoints.query as TTypeBreakpointsKeys
     return breakpointsQuery[currentQuery] || breakpointsQuery[snapshotQuery]
   }
 }
