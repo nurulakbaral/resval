@@ -4,6 +4,6 @@
   "projects": {
     "docs-react": "docs/docs-react",
     "docs-react-e2e": "docs/docs-react-e2e",
-    "react-responsive-values": "packages/react-responsive-values"
+    "react-resval": "packages/react-resval"
   }
 }

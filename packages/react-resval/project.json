@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/react-responsive-values/src",
+  "sourceRoot": "packages/react-resval/src",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -8,16 +8,16 @@
       "executor": "@nrwl/web:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/react-responsive-values",
-        "tsConfig": "packages/react-responsive-values/tsconfig.lib.json",
-        "project": "packages/react-responsive-values/package.json",
-        "entryFile": "packages/react-responsive-values/src/index.ts",
+        "outputPath": "dist/packages/react-resval",
+        "tsConfig": "packages/react-resval/tsconfig.lib.json",
+        "project": "packages/react-resval/package.json",
+        "entryFile": "packages/react-resval/src/index.ts",
         "external": ["react/jsx-runtime"],
         "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
         "compiler": "babel",
         "assets": [
           {
-            "glob": "packages/react-responsive-values/README.md",
+            "glob": "packages/react-resval/README.md",
             "input": ".",
             "output": "."
           }
@@ -28,14 +28,14 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["packages/react-responsive-values/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["packages/react-resval/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/react-responsive-values"],
+      "outputs": ["coverage/packages/react-resval"],
       "options": {
-        "jestConfig": "packages/react-responsive-values/jest.config.ts",
+        "jestConfig": "packages/react-resval/jest.config.ts",
         "passWithNoTests": true
       }
     }
