@@ -1,3 +1,9 @@
+/* eslint-disable @typescript-eslint/ban-types */
+export type TString = {} & string
+export type TNumber = {} & number
+export type TNullable = undefined | null
+export type TObject = {}
+
 export type TBreakpointsTrack = {
   query: string
   constraintWidth: string

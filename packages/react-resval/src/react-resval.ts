@@ -1,6 +1,16 @@
 /* eslint-disable prefer-const */
 import * as React from 'react'
-import type { TDefaultBreakpoints, TBaseObject, TMedia, TOptions, TBreakpointsTrack } from './types'
+import type {
+  TDefaultBreakpoints,
+  TBaseObject,
+  TMedia,
+  TOptions,
+  TBreakpointsTrack,
+  TString,
+  TNumber,
+  TNullable,
+  TObject,
+} from './types'
 import { trackBreakpoints, setBreakpoints } from './utils'
 
 /**
@@ -64,9 +74,8 @@ export function createResponsiveValues<TTypeBreakpointsOptions extends TBaseObje
 
   return function useResponsiveValues<
     TTypeBreakpointsKeys extends keyof TTypeBreakpointsOptions,
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    TTypeBreakpointValues extends ({} & string) | ({} & number) | {} | undefined | null,
-    TTypeBreakpointsQuery extends Partial<Record<TTypeBreakpointsKeys, TTypeBreakpointValues>>,
+    TTypeBreakpointValues extends TString | TNumber | TObject | TNullable,
+    TTypeBreakpointsQuery extends Partial<Record<TTypeBreakpointsKeys | TString, TTypeBreakpointValues>>,
   >(breakpointsQuery: TTypeBreakpointsQuery): TTypeBreakpointsQuery[keyof TTypeBreakpointsQuery] {
     let { breakpointsTrack } = useMediaQuery(breakpoints, media) as { breakpointsTrack: Array<TBreakpointsTrack> }
     let { currentBreakpoints, snapshotBreakpoints } = trackBreakpoints(breakpointsTrack, breakpointsQuery, media)
