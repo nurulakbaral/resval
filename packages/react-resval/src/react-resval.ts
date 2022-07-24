@@ -64,9 +64,10 @@ export function createResponsiveValues<TTypeBreakpointsOptions extends TBaseObje
 
   return function useResponsiveValues<
     TTypeBreakpointsKeys extends keyof TTypeBreakpointsOptions,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    TTypeBreakpointsQuery extends Partial<Record<TTypeBreakpointsKeys, any>>,
-  >(breakpointsQuery: TTypeBreakpointsQuery): TTypeBreakpointsQuery[keyof TTypeBreakpointsQuery] | undefined {
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    TTypeBreakpointValues extends ({} & string) | ({} & number) | {} | undefined | null,
+    TTypeBreakpointsQuery extends Partial<Record<TTypeBreakpointsKeys, TTypeBreakpointValues>>,
+  >(breakpointsQuery: TTypeBreakpointsQuery): TTypeBreakpointsQuery[keyof TTypeBreakpointsQuery] {
     let { breakpointsTrack } = useMediaQuery(breakpoints, media) as { breakpointsTrack: Array<TBreakpointsTrack> }
     let { currentBreakpoints, snapshotBreakpoints } = trackBreakpoints(breakpointsTrack, breakpointsQuery, media)
     let currentQuery = currentBreakpoints.query as TTypeBreakpointsKeys

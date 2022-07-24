@@ -8,14 +8,21 @@ export function useResponsiveValues() {
 
 export default function Home() {
   const vx = useResponsiveValues()
+
   const sizes = vx({
     base: 'base',
     xs: 'xs',
     md: 'md',
   })
+
   const colors = vx({
     base: 'red',
     md: 'aqua',
+  })
+
+  const textAlign = vx({
+    xs: 'left',
+    md: 'center',
   })
 
   return (
@@ -25,6 +32,7 @@ export default function Home() {
         style={{
           backgroundColor: colors,
           fontSize: '64px',
+          textAlign: textAlign,
         }}
       >
         The value: {sizes}
