@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-const */
 import type { TDefaultBreakpoints, TBaseObject, TMedia, TBreakpointsTrack } from './types'
 
@@ -59,4 +60,35 @@ export function setBreakpoints<TTypeBreakpointsOptions extends TBaseObject>(
   }
 
   return optionBreakpoints
+}
+
+export function sortBreakpointsTrack(breakpointsTrack: TBreakpointsTrack[]): TBreakpointsTrack[] {
+  // FIXME: Sort breakpointsTrack by constraintWidth by (rem, px, vh, ...etc) units
+  return breakpointsTrack.sort((a, b) => {
+    let aWidth = Number(a.constraintWidth.replace(/[^0-9.]/g, ''))
+    let bWidth = Number(b.constraintWidth.replace(/[^0-9.]/g, ''))
+    return aWidth - bWidth
+  })
+}
+
+export function extendsBreakpoints<
+  TTypeBreakpointsQuery extends Record<string, any>,
+  TTypeCurrentBreakpoints extends TDefaultBreakpoints | TBaseObject,
+>(breakpointsQuery: TTypeBreakpointsQuery, currentBreakpoints: TTypeCurrentBreakpoints) {
+  let breakpointsQueryKeys = Object.keys(breakpointsQuery)
+  let currentBreakpointsKeys = Object.keys(currentBreakpoints)
+  function getArbitraryKeys(key: string) {
+    return !currentBreakpointsKeys.includes(key)
+  }
+  let arbitraryKeys = breakpointsQueryKeys.filter(getArbitraryKeys)
+  if (!arbitraryKeys.length) {
+    return currentBreakpoints
+  }
+  let arbitraryObject: Record<string, any> = {}
+  breakpointsQueryKeys.forEach((key) => {
+    if (arbitraryKeys.includes(key)) {
+      arbitraryObject[key] = key
+    }
+  })
+  return { ...arbitraryObject, ...currentBreakpoints }
 }

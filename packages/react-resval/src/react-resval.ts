@@ -11,7 +11,7 @@ import type {
   TNullable,
   TObject,
 } from './types'
-import { trackBreakpoints, setBreakpoints } from './utils'
+import { trackBreakpoints, setBreakpoints, extendsBreakpoints, sortBreakpointsTrack } from './utils'
 
 /**
  * @docs Thanks to usehooks-ts.com/react-hook/use-media-query.
@@ -77,8 +77,12 @@ export function createResponsiveValues<TTypeBreakpointsOptions extends TBaseObje
     TTypeBreakpointValues extends TString | TNumber | TObject | TNullable,
     TTypeBreakpointsQuery extends Partial<Record<TTypeBreakpointsKeys | TString, TTypeBreakpointValues>>,
   >(breakpointsQuery: TTypeBreakpointsQuery): TTypeBreakpointsQuery[keyof TTypeBreakpointsQuery] {
-    let { breakpointsTrack } = useMediaQuery(breakpoints, media) as { breakpointsTrack: Array<TBreakpointsTrack> }
-    let { currentBreakpoints, snapshotBreakpoints } = trackBreakpoints(breakpointsTrack, breakpointsQuery, media)
+    let arbitraryBreakpoints = extendsBreakpoints(breakpointsQuery, breakpoints)
+    let { breakpointsTrack } = useMediaQuery(arbitraryBreakpoints, media) as {
+      breakpointsTrack: Array<TBreakpointsTrack>
+    }
+    let sortedBreakpointsTrack = sortBreakpointsTrack(breakpointsTrack)
+    let { currentBreakpoints, snapshotBreakpoints } = trackBreakpoints(sortedBreakpointsTrack, breakpointsQuery, media)
     let currentQuery = currentBreakpoints.query as TTypeBreakpointsKeys
     let snapshotQuery = snapshotBreakpoints.query as TTypeBreakpointsKeys
     return breakpointsQuery[currentQuery] || breakpointsQuery[snapshotQuery]
