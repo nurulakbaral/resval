@@ -80,8 +80,9 @@ export function createResponsiveValues<TTypeBreakpointsOptions extends TBaseObje
     breakpointsQuery: keyof TTypeBreakpointsQuery extends TTypeBreakpointsKeys ? TTypeBreakpointsQuery : never,
   ): TTypeBreakpointsQuery[keyof TTypeBreakpointsQuery] {
     let arbitraryBreakpoints = extendsBreakpoints(breakpointsQuery, breakpoints)
-    let { breakpointsTrack } = useMediaQuery(arbitraryBreakpoints, media) as {
-      breakpointsTrack: Array<TBreakpointsTrack>
+    let { breakpointsTrack } = useMediaQuery(arbitraryBreakpoints, media)
+    if (!breakpointsTrack) {
+      throw new Error('Window is not defined')
     }
     let sortedBreakpointsTrack = sortBreakpointsTrack(breakpointsTrack)
     let { currentBreakpoints, snapshotBreakpoints } = trackBreakpoints(sortedBreakpointsTrack, breakpointsQuery, media)
