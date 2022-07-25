@@ -9,6 +9,7 @@ import type {
   TNullable,
   TObject,
   TPrimivite,
+  TCSSWidthValues,
 } from './types'
 import { trackBreakpoints, setBreakpoints, extendsBreakpoints, sortBreakpointsTrack } from './utils'
 
@@ -72,10 +73,12 @@ export function createResponsiveValues<TTypeBreakpointsOptions extends TBaseObje
   let breakpoints = setBreakpoints(defaultBeakpoints, breakpointsOptions)
 
   return function useResponsiveValues<
-    TTypeBreakpointsKeys extends keyof TTypeBreakpointsOptions,
+    TTypeBreakpointsKeys extends keyof TTypeBreakpointsOptions | TCSSWidthValues,
     TTypeBreakpointValues extends TPrimivite<string> | TPrimivite<number> | TObject | TNullable,
-    TTypeBreakpointsQuery extends Partial<Record<TTypeBreakpointsKeys | TPrimivite<string>, TTypeBreakpointValues>>,
-  >(breakpointsQuery: TTypeBreakpointsQuery): TTypeBreakpointsQuery[keyof TTypeBreakpointsQuery] {
+    TTypeBreakpointsQuery extends Partial<Record<TTypeBreakpointsKeys, TTypeBreakpointValues>>,
+  >(
+    breakpointsQuery: keyof TTypeBreakpointsQuery extends TTypeBreakpointsKeys ? TTypeBreakpointsQuery : never,
+  ): TTypeBreakpointsQuery[keyof TTypeBreakpointsQuery] {
     let arbitraryBreakpoints = extendsBreakpoints(breakpointsQuery, breakpoints)
     let { breakpointsTrack } = useMediaQuery(arbitraryBreakpoints, media) as {
       breakpointsTrack: Array<TBreakpointsTrack>
