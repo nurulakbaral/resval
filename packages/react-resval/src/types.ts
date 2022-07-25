@@ -1,8 +1,32 @@
 /* eslint-disable @typescript-eslint/ban-types */
-export type TString = {} & string
-export type TNumber = {} & number
+export type TPrimivite<T = string> = T & {}
+
 export type TNullable = undefined | null
+
 export type TObject = {}
+
+export type TCSSAbsoluteUnits = 'cm' | 'mm' | 'Q' | 'in' | 'pc' | 'pt' | 'px'
+export type TCSSRelativeUnits =
+  | 'em'
+  | 'ex'
+  | 'ch'
+  | 'rem'
+  | 'lh'
+  | 'rlh'
+  | 'vw'
+  | 'vh'
+  | 'vmin'
+  | 'vmax'
+  | 'vb'
+  | 'vi'
+  | 'svw'
+  | 'svh'
+  | 'lvw'
+  | 'lvh'
+  | 'dvw'
+  | 'dvh'
+
+export type TCSSWidthValues = `${number}${TCSSAbsoluteUnits | TCSSRelativeUnits}`
 
 export type TBreakpointsTrack = {
   query: string
