@@ -8,7 +8,7 @@ import type {
   TBreakpointsTrack,
   TNullable,
   TObject,
-  TPrimivite,
+  TPrimitive,
   TCSSWidthValues,
 } from './types'
 import { trackBreakpoints, setBreakpoints, extendsBreakpoints, sortBreakpointsTrack } from './utils'
@@ -74,7 +74,7 @@ export function createResponsiveValues<TTypeBreakpointsOptions extends TBaseObje
 
   return function useResponsiveValues<
     TTypeBreakpointsKeys extends keyof TTypeBreakpointsOptions | TCSSWidthValues,
-    TTypeBreakpointValues extends TPrimivite<string> | TPrimivite<number> | TObject | TNullable,
+    TTypeBreakpointValues extends TPrimitive<string> | TPrimitive<number> | TObject | TNullable,
     TTypeBreakpointsQuery extends Partial<Record<TTypeBreakpointsKeys, TTypeBreakpointValues>>,
   >(
     breakpointsQuery: keyof TTypeBreakpointsQuery extends TTypeBreakpointsKeys ? TTypeBreakpointsQuery : never,

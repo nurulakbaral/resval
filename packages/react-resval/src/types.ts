@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/ban-types */
-export type TPrimivite<T = string> = T & {}
+export type TPrimitive<T = string> = T & {}
 
 export type TNullable = undefined | null
 
 export type TObject = {}
 
 export type TCSSAbsoluteUnits = 'cm' | 'mm' | 'Q' | 'in' | 'pc' | 'pt' | 'px'
+
 export type TCSSRelativeUnits =
   | 'em'
   | 'ex'
