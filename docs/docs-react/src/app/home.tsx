@@ -1,14 +1,14 @@
+import { useState } from 'react'
 import { createResponsiveValues } from '@resval/react-responsive-values'
-
-const MEDIA = 'min'
 
 export function useResponsiveValues() {
   return createResponsiveValues({
-    media: MEDIA,
+    media: 'min',
   })
 }
 
 export default function Home() {
+  const [, forceRender] = useState(false)
   const vx = useResponsiveValues()
   const sizes = vx({
     base: '0px',
@@ -31,6 +31,13 @@ export default function Home() {
     md: 'center',
   })
 
+  for (let i = 0; i < 1000; i++) {
+    vx({
+      base: '0px',
+      xs: '320px',
+    })
+  }
+
   return (
     <div>
       <h1>Hello Home</h1>
@@ -41,8 +48,9 @@ export default function Home() {
           textAlign: textAlign,
         }}
       >
-        {MEDIA}: {sizes}
+        Value: {sizes}
       </p>
+      <button onClick={() => forceRender((r) => !r)}>Render</button>
     </div>
   )
 }

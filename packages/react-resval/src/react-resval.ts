@@ -79,13 +79,33 @@ export function createResponsiveValues<TTypeBreakpointsOptions extends TBaseObje
   >(
     breakpointsQuery: keyof TTypeBreakpointsQuery extends TTypeBreakpointsKeys ? TTypeBreakpointsQuery : never,
   ): TTypeBreakpointsQuery[keyof TTypeBreakpointsQuery] {
-    let arbitraryBreakpoints = extendsBreakpoints(breakpointsQuery, breakpoints)
+    /**
+     * @description Since the value is done only on the first render, it is optimized with useMemo.
+     */
+
+    let arbitraryBreakpoints = React.useMemo(function () {
+      return extendsBreakpoints(breakpointsQuery, breakpoints)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     let { breakpointsTrack } = useMediaQuery(arbitraryBreakpoints, media)
     if (!breakpointsTrack) {
       throw new Error('Window is not defined')
     }
-    let sortedBreakpointsTrack = sortBreakpointsTrack(breakpointsTrack)
-    let { currentBreakpoints, snapshotBreakpoints } = trackBreakpoints(sortedBreakpointsTrack, breakpointsQuery, media)
+    let sortedBreakpointsTrack = React.useMemo(
+      function () {
+        return sortBreakpointsTrack(breakpointsTrack as Array<TBreakpointsTrack>)
+      },
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      [breakpointsTrack],
+    )
+    let { currentBreakpoints, snapshotBreakpoints } = React.useMemo(
+      function () {
+        return trackBreakpoints(sortedBreakpointsTrack, breakpointsQuery, media)
+      },
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      [breakpointsTrack],
+    )
+
     let currentQuery = currentBreakpoints.query as TTypeBreakpointsKeys
     let snapshotQuery = snapshotBreakpoints.query as TTypeBreakpointsKeys
     return breakpointsQuery[currentQuery] || breakpointsQuery[snapshotQuery]
