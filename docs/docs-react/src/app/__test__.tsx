@@ -19,6 +19,15 @@ export default function TestField() {
     lg: 'val: lg',
     xl: 'val: xl',
   })
+  let valSecond = useVx({
+    base: 'val: base',
+    md: 'val: md',
+  })
+  let valThird = useVx({
+    xs: 'val: xs',
+    md: 'val: md',
+  })
+  let valFourth = useVx({})
 
   return (
     <div>
@@ -29,6 +38,9 @@ export default function TestField() {
        */}
 
       <h1 data-testid='db-min-first'>{valFirst}</h1>
+      <h1 data-testid='db-min-second'>{valSecond}</h1>
+      <h1 data-testid='db-min-third'>{valThird}</h1>
+      <h1 data-testid='db-min-fourth'>{valFourth}</h1>
     </div>
   )
 }
