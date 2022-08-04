@@ -35,7 +35,7 @@ export type TBreakpointsTrack = {
   status: boolean
 }
 
-export type TBaseObject = Record<string, string>
+export type TBaseObject = Record<string, string | number>
 
 export type TMedia = 'min' | 'max'
 

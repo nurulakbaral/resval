@@ -17,7 +17,10 @@ import { trackBreakpoints, setBreakpoints, extendsBreakpoints, sortBreakpointsTr
  * @docs Thanks to usehooks-ts.com/react-hook/use-media-query.
  */
 
-export function useMediaQuery(queries: TBaseObject | TDefaultBreakpoints, media: TMedia) {
+export function useMediaQuery<TTypeBreakpointsOptions = TDefaultBreakpoints>(
+  queries: TTypeBreakpointsOptions,
+  media: TMedia,
+) {
   // Notes: Get initial breakpoints
   let [matches, setMatches] = React.useState<Array<TBreakpointsTrack> | false>(getMatches(queries))
 
@@ -41,7 +44,7 @@ export function useMediaQuery(queries: TBaseObject | TDefaultBreakpoints, media:
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  function getMatches(queries: TBaseObject | TDefaultBreakpoints) {
+  function getMatches(queries: TTypeBreakpointsOptions) {
     // Notes: Prevents SSR issues
     if (typeof window !== 'undefined') {
       return Object.entries(queries).map(function ([query, constraintWidth]) {

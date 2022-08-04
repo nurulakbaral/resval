@@ -51,19 +51,30 @@ export function isEmptyObject<TTypeObject extends TBaseObject>(obj: TTypeObject)
  * @description Use default breakpoints if option breakpoints is empty.
  */
 
-export function setBreakpoints<TTypeBreakpointsOptions extends TBaseObject>(
+export function setBreakpoints<TTypeBreakpointsOptions extends TBaseObject = TDefaultBreakpoints>(
   defaultBeakpoints: TDefaultBreakpoints,
   optionBreakpoints: TTypeBreakpointsOptions | undefined,
 ) {
   if (typeof optionBreakpoints === 'undefined' || isEmptyObject(optionBreakpoints)) {
     return defaultBeakpoints
   }
-
+  let breakpointsValues = Object.values(optionBreakpoints)
+  if (isArrayOfNumber(breakpointsValues)) {
+    let optionBreakpointsMapped: Record<string, string> = {}
+    Object.entries(optionBreakpoints).forEach(([key, value]) => {
+      optionBreakpointsMapped[key] = `${value}px`
+    })
+    return optionBreakpointsMapped
+  }
+  if (!isArrayOfCSSUnits(breakpointsValues)) {
+    throw new Error(
+      'When you call `createResponsiveValues`, `breakpoints` property must contain CSS Units such as `px`, `rem`, `em`, etc and do not mix up string values and number values. Docs: developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units',
+    )
+  }
   return optionBreakpoints
 }
 
 export function sortBreakpointsTrack(breakpointsTrack: TBreakpointsTrack[]): TBreakpointsTrack[] {
-  // FIXME: Sort breakpointsTrack by constraintWidth by (rem, px, vh, ...etc) units
   return breakpointsTrack.sort((a, b) => {
     let aWidth = Number(a.constraintWidth.replace(/[^0-9.]/g, ''))
     let bWidth = Number(b.constraintWidth.replace(/[^0-9.]/g, ''))
@@ -91,4 +102,13 @@ export function extendsBreakpoints<
     }
   })
   return { ...arbitraryObject, ...currentBreakpoints }
+}
+
+export function isArrayOfNumber(arr: any[]): boolean {
+  return arr.every((value) => typeof Number(value) === 'number' && !Number.isNaN(Number(value)))
+}
+
+export function isArrayOfCSSUnits(arr: any[]): boolean {
+  let CSSUnits = /^[0-9.]+(cm|mm|Q|in|pc|pt|px|em|ex|ch|rem|lh|rlh|vw|vh|vmin|vmax|vb|vi|svw|svh|lvw|lvh|dvw|dvh)$/
+  return arr.every((value) => typeof value === 'string' && CSSUnits.test(value))
 }

@@ -3,6 +3,14 @@ import { createResponsiveValues } from '@resval/react-responsive-values'
 
 export function useResponsiveValues() {
   return createResponsiveValues({
+    breakpoints: {
+      base: 0,
+      xs: 320,
+      sm: 576,
+      md: 768,
+      lg: 1080,
+      xl: '1280',
+    },
     media: 'min',
   })
 }
@@ -31,12 +39,12 @@ export default function Home() {
     md: 'center',
   })
 
-  for (let i = 0; i < 1000; i++) {
-    vx({
-      base: '0px',
-      xs: '320px',
-    })
-  }
+  // for (let i = 0; i < 1000; i++) {
+  //   vx({
+  //     base: '0px',
+  //     xs: '320px',
+  //   })
+  // }
 
   return (
     <div>

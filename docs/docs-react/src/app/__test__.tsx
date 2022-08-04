@@ -3,6 +3,14 @@ import { createResponsiveValues, TDefaultBreakpoints } from '@resval/react-respo
 
 export function useVx(breakpoints: TDefaultBreakpoints) {
   return createResponsiveValues({
+    breakpoints: {
+      base: 0,
+      xs: '320',
+      sm: 576,
+      md: '768',
+      lg: 1080,
+      xl: '1280',
+    },
     media: 'min',
   })(breakpoints)
 }
