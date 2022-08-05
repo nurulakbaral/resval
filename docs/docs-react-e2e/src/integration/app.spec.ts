@@ -48,4 +48,46 @@ describe('docs-react', () => {
         })
     })
   })
+  describe('should display the appropriate value for Default Breakpoints (Media: MAX)', () => {
+    it('should display (base, xs, sm, md, lg, xl) values', () => {
+      cy.fixture('db-max-first.json')
+        .its('data')
+        .then((list: TBreakpointsTrack) => {
+          list.forEach(({ width, value }) => {
+            cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.get('[data-testid=db-max-first').should('have.text', value)
+          })
+        })
+    })
+    it('should display (base, md, md, md, undefined, undefined) values', () => {
+      cy.fixture('db-max-second.json')
+        .its('data')
+        .then((list: TBreakpointsTrack) => {
+          list.forEach(({ width, value }) => {
+            cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.get('[data-testid=db-max-second').should('have.text', value)
+          })
+        })
+    })
+    it('should display (xs, xs, md, md, undefined, undefined) values', () => {
+      cy.fixture('db-max-third.json')
+        .its('data')
+        .then((list: TBreakpointsTrack) => {
+          list.forEach(({ width, value }) => {
+            cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.get('[data-testid=db-max-third').should('have.text', value)
+          })
+        })
+    })
+    it('should display (undefined, undefined, undefined, undefined, undefined, undefined) values', () => {
+      cy.fixture('db-max-fourth.json')
+        .its('data')
+        .then((list: TBreakpointsTrack) => {
+          list.forEach(({ width, value }) => {
+            cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.get('[data-testid=db-max-fourth').should('have.text', value)
+          })
+        })
+    })
+  })
 })

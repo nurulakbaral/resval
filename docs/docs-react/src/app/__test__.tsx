@@ -1,17 +1,15 @@
 /* eslint-disable prefer-const */
 import { createResponsiveValues, TDefaultBreakpoints } from '@resval/react-responsive-values'
 
-export function useVx(breakpoints: TDefaultBreakpoints) {
+export function useVxBdMin(breakpoints: TDefaultBreakpoints) {
   return createResponsiveValues({
-    breakpoints: {
-      base: 0,
-      xs: '320',
-      sm: 576,
-      md: '768',
-      lg: 1080,
-      xl: '1280',
-    },
     media: 'min',
+  })(breakpoints)
+}
+
+export function useVxBdMax(breakpoints: TDefaultBreakpoints) {
+  return createResponsiveValues({
+    media: 'max',
   })(breakpoints)
 }
 
@@ -19,7 +17,8 @@ export default function TestField() {
   /**
    * Default Breakpoints (Media: MIN)
    */
-  let valFirst = useVx({
+
+  let valFirstBdMin = useVxBdMin({
     base: 'val: base',
     xs: 'val: xs',
     sm: 'val: sm',
@@ -27,15 +26,37 @@ export default function TestField() {
     lg: 'val: lg',
     xl: 'val: xl',
   })
-  let valSecond = useVx({
+  let valSecondBdMin = useVxBdMin({
     base: 'val: base',
     md: 'val: md',
   })
-  let valThird = useVx({
+  let valThirdBdMin = useVxBdMin({
     xs: 'val: xs',
     md: 'val: md',
   })
-  let valFourth = useVx({})
+  let valFourthBdMin = useVxBdMin({})
+
+  /**
+   * Default Breakpoints (Media: Max)
+   */
+
+  let valFirstBdMax = useVxBdMax({
+    base: 'val: base',
+    xs: 'val: xs',
+    sm: 'val: sm',
+    md: 'val: md',
+    lg: 'val: lg',
+    xl: 'val: xl',
+  })
+  let valSecondBdMax = useVxBdMax({
+    base: 'val: base',
+    md: 'val: md',
+  })
+  let valThirdBdMax = useVxBdMax({
+    xs: 'val: xs',
+    md: 'val: md',
+  })
+  let valFourthBdMax = useVxBdMax({})
 
   return (
     <div>
@@ -45,10 +66,20 @@ export default function TestField() {
        *
        */}
 
-      <h1 data-testid='db-min-first'>{valFirst}</h1>
-      <h1 data-testid='db-min-second'>{valSecond}</h1>
-      <h1 data-testid='db-min-third'>{valThird}</h1>
-      <h1 data-testid='db-min-fourth'>{valFourth}</h1>
+      <h1 data-testid='db-min-first'>{valFirstBdMin}</h1>
+      <h1 data-testid='db-min-second'>{valSecondBdMin}</h1>
+      <h1 data-testid='db-min-third'>{valThirdBdMin}</h1>
+      <h1 data-testid='db-min-fourth'>{valFourthBdMin}</h1>
+      {/**
+       *
+       * Default Breakpoints (Media: MAX)
+       *
+       */}
+
+      <h1 data-testid='db-max-first'>{valFirstBdMax}</h1>
+      <h1 data-testid='db-max-second'>{valSecondBdMax}</h1>
+      <h1 data-testid='db-max-third'>{valThirdBdMax}</h1>
+      <h1 data-testid='db-max-fourth'>{valFourthBdMax}</h1>
     </div>
   )
 }
