@@ -54,5 +54,3 @@ export type TOptions<TTypeBreakpointsOptions = TDefaultBreakpoints> = {
   breakpoints?: TTypeBreakpointsOptions
   media: TMedia
 }
-
-export type TBreakpointsQuery<T = TDefaultBreakpoints> = Partial<Record<keyof T | TCSSWidthValues, T[keyof T]>>

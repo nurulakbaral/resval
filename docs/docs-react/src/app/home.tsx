@@ -1,23 +1,20 @@
 import { useState } from 'react'
 import { createResponsiveValues } from '@resval/react-responsive-values'
 
-export function useResponsiveValues() {
-  return createResponsiveValues({
-    breakpoints: {
-      base: 0,
-      xs: 320,
-      sm: 576,
-      md: 768,
-      lg: 1080,
-      xl: '1280',
-    },
-    media: 'min',
-  })
-}
+export const vx = createResponsiveValues({
+  breakpoints: {
+    base: 0,
+    xs: 320,
+    sm: 576,
+    md: 768,
+    lg: 1080,
+    xl: '1280',
+  },
+  media: 'min',
+})
 
 export default function Home() {
   const [, forceRender] = useState(false)
-  const vx = useResponsiveValues()
   const sizes = vx({
     base: '0px',
     xs: '320px',

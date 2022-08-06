@@ -1,17 +1,13 @@
 /* eslint-disable prefer-const */
-import { createResponsiveValues, TBreakpointsQuery } from '@resval/react-responsive-values'
+import { createResponsiveValues } from '@resval/react-responsive-values'
 
-export function useVxBdMin(breakpointsQuery: TBreakpointsQuery) {
-  return createResponsiveValues({
-    media: 'min',
-  })(breakpointsQuery)
-}
+export const useVxBdMin = createResponsiveValues({
+  media: 'min',
+})
 
-export function useVxBdMax(breakpointsQuery: TBreakpointsQuery) {
-  return createResponsiveValues({
-    media: 'max',
-  })(breakpointsQuery)
-}
+export const useVxBdMax = createResponsiveValues({
+  media: 'max',
+})
 
 const customBreakpointsMin = {
   base: '0px',
@@ -22,19 +18,17 @@ const customBreakpointsMin = {
   desktop: '1280px',
 }
 
-export function useVxCbMin(breakpointsQuery: TBreakpointsQuery<typeof customBreakpointsMin>) {
-  return createResponsiveValues({
-    breakpoints: { ...customBreakpointsMin },
-    media: 'min',
-  })(breakpointsQuery)
-}
+export const useVxCbMin = createResponsiveValues({
+  breakpoints: { ...customBreakpointsMin },
+  media: 'min',
+})
 
 export default function TestField() {
   /**
    * Default Breakpoints (Media: MIN)
    */
 
-  let valFirstBdMin = useVxBdMin({
+  const valFirstBdMin = useVxBdMin({
     base: 'val: base',
     xs: 'val: xs',
     sm: 'val: sm',
@@ -42,21 +36,21 @@ export default function TestField() {
     lg: 'val: lg',
     xl: 'val: xl',
   })
-  let valSecondBdMin = useVxBdMin({
+  const valSecondBdMin = useVxBdMin({
     base: 'val: base',
     md: 'val: md',
   })
-  let valThirdBdMin = useVxBdMin({
+  const valThirdBdMin = useVxBdMin({
     xs: 'val: xs',
     md: 'val: md',
   })
-  let valFourthBdMin = useVxBdMin({})
+  const valFourthBdMin = useVxBdMin({})
 
   /**
    * Default Breakpoints (Media: Max)
    */
 
-  let valFirstBdMax = useVxBdMax({
+  const valFirstBdMax = useVxBdMax({
     base: 'val: base',
     xs: 'val: xs',
     sm: 'val: sm',
@@ -64,21 +58,21 @@ export default function TestField() {
     lg: 'val: lg',
     xl: 'val: xl',
   })
-  let valSecondBdMax = useVxBdMax({
+  const valSecondBdMax = useVxBdMax({
     base: 'val: base',
     md: 'val: md',
   })
-  let valThirdBdMax = useVxBdMax({
+  const valThirdBdMax = useVxBdMax({
     xs: 'val: xs',
     md: 'val: md',
   })
-  let valFourthBdMax = useVxBdMax({})
+  const valFourthBdMax = useVxBdMax({})
 
   /**
    * Default Breakpoints (Media: MIN)
    */
 
-  let valFirstCbMin = useVxCbMin({
+  const valFirstCbMin = useVxCbMin({
     base: 'val: base',
     smallMobile: 'val: smallMobile',
     mediumMobile: 'val: mediumMobile',
@@ -86,15 +80,15 @@ export default function TestField() {
     tablet: 'val: tablet',
     desktop: 'val: desktop',
   })
-  let valSecondCbMin = useVxCbMin({
+  const valSecondCbMin = useVxCbMin({
     base: 'val: base',
     largeMobile: 'val: largeMobile',
   })
-  let valThirdCbMin = useVxCbMin({
+  const valThirdCbMin = useVxCbMin({
     smallMobile: 'val: smallMobile',
     largeMobile: 'val: largeMobile',
   })
-  let valFourthCbMin = useVxCbMin({
+  const valFourthCbMin = useVxCbMin({
     base: 'val: base',
     smallMobile: 'val: smallMobile',
     mediumMobile: 'val: mediumMobile',
@@ -104,16 +98,16 @@ export default function TestField() {
     '900px': 'val: 900px',
     '600px': 'val: 600px',
   })
-  let valFifthCbMin = useVxCbMin({
+  const valFifthCbMin = useVxCbMin({
     base: 'val: base',
     '900px': 'val: 900px',
     '600px': 'val: 600px',
   })
-  let valSixthCbMin = useVxCbMin({
+  const valSixthCbMin = useVxCbMin({
     '900px': 'val: 900px',
     '600px': 'val: 600px',
   })
-  let valSeventhCbMin = useVxCbMin({})
+  const valSeventhCbMin = useVxCbMin({})
 
   return (
     <div>
