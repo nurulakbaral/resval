@@ -69,7 +69,7 @@ export default function TestField() {
   const valFourthBdMax = useVxBdMax({})
 
   /**
-   * Default Breakpoints (Media: MIN)
+   * Custom Breakpoints (Media: MIN)
    */
 
   const valFirstCbMin = useVxCbMin({
