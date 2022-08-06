@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-types */
+
 export type TPrimitive<T = string> = T & {}
 
 export type TNullable = undefined | null
@@ -52,3 +54,5 @@ export type TOptions<TTypeBreakpointsOptions = TDefaultBreakpoints> = {
   breakpoints?: TTypeBreakpointsOptions
   media: TMedia
 }
+
+export type TBreakpointsQuery<T = TDefaultBreakpoints> = Partial<Record<keyof T | TCSSWidthValues, T[keyof T]>>

@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "width": 280,
+      "value": ""
+    },
+    {
+      "width": 350,
+      "value": ""
+    },
+    {
+      "width": 576,
+      "value": ""
+    },
+    {
+      "width": 600,
+      "value": "val: 600px"
+    },
+    {
+      "width": 768,
+      "value": "val: 600px"
+    },
+    {
+      "width": 900,
+      "value": "val: 900px"
+    },
+    {
+      "width": 1080,
+      "value": "val: 900px"
+    },
+    {
+      "width": 1280,
+      "value": "val: 900px"
+    }
+  ]
+}
