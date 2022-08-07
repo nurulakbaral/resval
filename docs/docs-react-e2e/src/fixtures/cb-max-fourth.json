@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "width": 280,
+      "value": "val: smallMobile"
+    },
+    {
+      "width": 350,
+      "value": "val: mediumMobile"
+    },
+    {
+      "width": 576,
+      "value": "val: mediumMobile"
+    },
+    {
+      "width": 600,
+      "value": "val: 600px"
+    },
+    {
+      "width": 768,
+      "value": "val: largeMobile"
+    },
+    {
+      "width": 900,
+      "value": "val: 900px"
+    },
+    {
+      "width": 1080,
+      "value": "val: tablet"
+    },
+    {
+      "width": 1280,
+      "value": "val: desktop"
+    }
+  ]
+}

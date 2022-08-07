@@ -162,4 +162,76 @@ describe('docs-react', () => {
         })
     })
   })
+  describe('should display the appropriate value for Custom Breakpoints (Media: MAX)', () => {
+    it('should display for first values', () => {
+      cy.fixture('cb-max-first.json')
+        .its('data')
+        .then((list: TBreakpointsTrack) => {
+          list.forEach(({ width, value }) => {
+            cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.get('[data-testid=cb-max-first').should('have.text', value)
+          })
+        })
+    })
+    it('should display for second values', () => {
+      cy.fixture('cb-max-second.json')
+        .its('data')
+        .then((list: TBreakpointsTrack) => {
+          list.forEach(({ width, value }) => {
+            cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.get('[data-testid=cb-max-second').should('have.text', value)
+          })
+        })
+    })
+    it('should display for third values', () => {
+      cy.fixture('cb-max-third.json')
+        .its('data')
+        .then((list: TBreakpointsTrack) => {
+          list.forEach(({ width, value }) => {
+            cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.get('[data-testid=cb-max-third').should('have.text', value)
+          })
+        })
+    })
+    it('should display for fourth values', () => {
+      cy.fixture('cb-max-fourth.json')
+        .its('data')
+        .then((list: TBreakpointsTrack) => {
+          list.forEach(({ width, value }) => {
+            cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.get('[data-testid=cb-max-fourth').should('have.text', value)
+          })
+        })
+    })
+    it('should display for fifth values', () => {
+      cy.fixture('cb-max-fifth.json')
+        .its('data')
+        .then((list: TBreakpointsTrack) => {
+          list.forEach(({ width, value }) => {
+            cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.get('[data-testid=cb-max-fifth').should('have.text', value)
+          })
+        })
+    })
+    it('should display for sixth values', () => {
+      cy.fixture('cb-max-sixth.json')
+        .its('data')
+        .then((list: TBreakpointsTrack) => {
+          list.forEach(({ width, value }) => {
+            cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.get('[data-testid=cb-max-sixth').should('have.text', value)
+          })
+        })
+    })
+    it('should display for seventh values', () => {
+      cy.fixture('cb-max-seventh.json')
+        .its('data')
+        .then((list: TBreakpointsTrack) => {
+          list.forEach(({ width, value }) => {
+            cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.get('[data-testid=cb-max-seventh').should('have.text', value)
+          })
+        })
+    })
+  })
 })
