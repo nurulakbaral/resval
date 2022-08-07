@@ -7,7 +7,7 @@ describe('docs-react', () => {
    */
   beforeEach(() => cy.visit('/__test__'))
   describe('should display the appropriate value for Default Breakpoints (Media: MIN)', () => {
-    it('should display (base, xs, sm, md, lg, xl) values', () => {
+    it('should display for first values', () => {
       cy.fixture('db-min-first.json')
         .its('data')
         .then((list: TBreakpointsTrack) => {
@@ -17,7 +17,7 @@ describe('docs-react', () => {
           })
         })
     })
-    it('should display (base, base, base, md, md, md) values', () => {
+    it('should display for second values', () => {
       cy.fixture('db-min-second.json')
         .its('data')
         .then((list: TBreakpointsTrack) => {
@@ -27,7 +27,7 @@ describe('docs-react', () => {
           })
         })
     })
-    it('should display (undefined, xs, xs, md, md, md) values', () => {
+    it('should display for third values', () => {
       cy.fixture('db-min-third.json')
         .its('data')
         .then((list: TBreakpointsTrack) => {
@@ -37,7 +37,7 @@ describe('docs-react', () => {
           })
         })
     })
-    it('should display (undefined, undefined, undefined, undefined, undefined, undefined) values', () => {
+    it('should display for fourth values', () => {
       cy.fixture('db-min-fourth.json')
         .its('data')
         .then((list: TBreakpointsTrack) => {
@@ -49,7 +49,7 @@ describe('docs-react', () => {
     })
   })
   describe('should display the appropriate value for Default Breakpoints (Media: MAX)', () => {
-    it('should display (base, xs, sm, md, lg, xl) values', () => {
+    it('should display first values', () => {
       cy.fixture('db-max-first.json')
         .its('data')
         .then((list: TBreakpointsTrack) => {
@@ -59,7 +59,7 @@ describe('docs-react', () => {
           })
         })
     })
-    it('should display (base, md, md, md, undefined, undefined) values', () => {
+    it('should display second values', () => {
       cy.fixture('db-max-second.json')
         .its('data')
         .then((list: TBreakpointsTrack) => {
@@ -69,7 +69,7 @@ describe('docs-react', () => {
           })
         })
     })
-    it('should display (xs, xs, md, md, undefined, undefined) values', () => {
+    it('should display third values', () => {
       cy.fixture('db-max-third.json')
         .its('data')
         .then((list: TBreakpointsTrack) => {
@@ -79,7 +79,7 @@ describe('docs-react', () => {
           })
         })
     })
-    it('should display (undefined, undefined, undefined, undefined, undefined, undefined) values', () => {
+    it('should display fourth values', () => {
       cy.fixture('db-max-fourth.json')
         .its('data')
         .then((list: TBreakpointsTrack) => {
@@ -91,7 +91,7 @@ describe('docs-react', () => {
     })
   })
   describe('should display the appropriate value for Custom Breakpoints (Media: MIN)', () => {
-    it('should display (base, smallMobile, mediumMobile, largeMobile, tablet, desktop) values', () => {
+    it('should display first values', () => {
       cy.fixture('cb-min-first.json')
         .its('data')
         .then((list: TBreakpointsTrack) => {
@@ -101,7 +101,7 @@ describe('docs-react', () => {
           })
         })
     })
-    it('should display (base, base, base, largeMobile, largeMobile, largeMobile) values', () => {
+    it('should display second values', () => {
       cy.fixture('cb-min-second.json')
         .its('data')
         .then((list: TBreakpointsTrack) => {
@@ -111,7 +111,7 @@ describe('docs-react', () => {
           })
         })
     })
-    it('should display (undefined, smallMobile, smallMobile, largeMobile, largeMobile, largeMobile) values', () => {
+    it('should display third values', () => {
       cy.fixture('cb-min-third.json')
         .its('data')
         .then((list: TBreakpointsTrack) => {
@@ -121,7 +121,7 @@ describe('docs-react', () => {
           })
         })
     })
-    it('should display (base, smallMobile, mediumMobile, 600px, largeMobile, 900px, tablet, desktop) values', () => {
+    it('should display fourth values', () => {
       cy.fixture('cb-min-fourth.json')
         .its('data')
         .then((list: TBreakpointsTrack) => {
@@ -131,7 +131,7 @@ describe('docs-react', () => {
           })
         })
     })
-    it('should display (base, base, base, 600px, 600px, 900px, 900px, 900px) values', () => {
+    it('should display fifth values', () => {
       cy.fixture('cb-min-fifth.json')
         .its('data')
         .then((list: TBreakpointsTrack) => {
@@ -141,7 +141,7 @@ describe('docs-react', () => {
           })
         })
     })
-    it('should display (undefined, undefined, undefined, 600px, 600px, 900px, 900px, 900px) values', () => {
+    it('should display sixth values', () => {
       cy.fixture('cb-min-sixth.json')
         .its('data')
         .then((list: TBreakpointsTrack) => {
@@ -151,7 +151,7 @@ describe('docs-react', () => {
           })
         })
     })
-    it('should display (undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined) values', () => {
+    it('should display seventh values', () => {
       cy.fixture('cb-min-seventh.json')
         .its('data')
         .then((list: TBreakpointsTrack) => {
