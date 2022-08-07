@@ -1,5 +1,5 @@
 import { TBreakpointsTrack } from './types'
-import { HEIGHT_VIEWPORT } from './constants'
+import { HEIGHT_VIEWPORT, SET_VIEWPORT } from './constants'
 
 describe('docs-react', () => {
   /**
@@ -13,6 +13,7 @@ describe('docs-react', () => {
         .then((list: TBreakpointsTrack) => {
           list.forEach(({ width, value }) => {
             cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
             cy.get('[data-testid=db-min-first').should('have.text', value)
           })
         })
@@ -23,6 +24,7 @@ describe('docs-react', () => {
         .then((list: TBreakpointsTrack) => {
           list.forEach(({ width, value }) => {
             cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
             cy.get('[data-testid=db-min-second').should('have.text', value)
           })
         })
@@ -33,6 +35,7 @@ describe('docs-react', () => {
         .then((list: TBreakpointsTrack) => {
           list.forEach(({ width, value }) => {
             cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
             cy.get('[data-testid=db-min-third').should('have.text', value)
           })
         })
@@ -43,6 +46,7 @@ describe('docs-react', () => {
         .then((list: TBreakpointsTrack) => {
           list.forEach(({ width, value }) => {
             cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
             cy.get('[data-testid=db-min-fourth').should('have.text', value)
           })
         })
@@ -55,6 +59,7 @@ describe('docs-react', () => {
         .then((list: TBreakpointsTrack) => {
           list.forEach(({ width, value }) => {
             cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
             cy.get('[data-testid=db-max-first').should('have.text', value)
           })
         })
@@ -65,6 +70,7 @@ describe('docs-react', () => {
         .then((list: TBreakpointsTrack) => {
           list.forEach(({ width, value }) => {
             cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
             cy.get('[data-testid=db-max-second').should('have.text', value)
           })
         })
@@ -75,6 +81,7 @@ describe('docs-react', () => {
         .then((list: TBreakpointsTrack) => {
           list.forEach(({ width, value }) => {
             cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
             cy.get('[data-testid=db-max-third').should('have.text', value)
           })
         })
@@ -85,6 +92,7 @@ describe('docs-react', () => {
         .then((list: TBreakpointsTrack) => {
           list.forEach(({ width, value }) => {
             cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
             cy.get('[data-testid=db-max-fourth').should('have.text', value)
           })
         })
@@ -97,6 +105,7 @@ describe('docs-react', () => {
         .then((list: TBreakpointsTrack) => {
           list.forEach(({ width, value }) => {
             cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
             cy.get('[data-testid=cb-min-first').should('have.text', value)
           })
         })
@@ -107,6 +116,7 @@ describe('docs-react', () => {
         .then((list: TBreakpointsTrack) => {
           list.forEach(({ width, value }) => {
             cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
             cy.get('[data-testid=cb-min-second').should('have.text', value)
           })
         })
@@ -117,6 +127,7 @@ describe('docs-react', () => {
         .then((list: TBreakpointsTrack) => {
           list.forEach(({ width, value }) => {
             cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
             cy.get('[data-testid=cb-min-third').should('have.text', value)
           })
         })
@@ -127,6 +138,7 @@ describe('docs-react', () => {
         .then((list: TBreakpointsTrack) => {
           list.forEach(({ width, value }) => {
             cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
             cy.get('[data-testid=cb-min-fourth').should('have.text', value)
           })
         })
@@ -137,6 +149,7 @@ describe('docs-react', () => {
         .then((list: TBreakpointsTrack) => {
           list.forEach(({ width, value }) => {
             cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
             cy.get('[data-testid=cb-min-fifth').should('have.text', value)
           })
         })
@@ -147,6 +160,7 @@ describe('docs-react', () => {
         .then((list: TBreakpointsTrack) => {
           list.forEach(({ width, value }) => {
             cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
             cy.get('[data-testid=cb-min-sixth').should('have.text', value)
           })
         })
@@ -157,6 +171,7 @@ describe('docs-react', () => {
         .then((list: TBreakpointsTrack) => {
           list.forEach(({ width, value }) => {
             cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
             cy.get('[data-testid=cb-min-seventh').should('have.text', value)
           })
         })
@@ -169,6 +184,7 @@ describe('docs-react', () => {
         .then((list: TBreakpointsTrack) => {
           list.forEach(({ width, value }) => {
             cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
             cy.get('[data-testid=cb-max-first').should('have.text', value)
           })
         })
@@ -179,6 +195,7 @@ describe('docs-react', () => {
         .then((list: TBreakpointsTrack) => {
           list.forEach(({ width, value }) => {
             cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
             cy.get('[data-testid=cb-max-second').should('have.text', value)
           })
         })
@@ -189,6 +206,7 @@ describe('docs-react', () => {
         .then((list: TBreakpointsTrack) => {
           list.forEach(({ width, value }) => {
             cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
             cy.get('[data-testid=cb-max-third').should('have.text', value)
           })
         })
@@ -199,6 +217,7 @@ describe('docs-react', () => {
         .then((list: TBreakpointsTrack) => {
           list.forEach(({ width, value }) => {
             cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
             cy.get('[data-testid=cb-max-fourth').should('have.text', value)
           })
         })
@@ -209,6 +228,7 @@ describe('docs-react', () => {
         .then((list: TBreakpointsTrack) => {
           list.forEach(({ width, value }) => {
             cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
             cy.get('[data-testid=cb-max-fifth').should('have.text', value)
           })
         })
@@ -219,6 +239,7 @@ describe('docs-react', () => {
         .then((list: TBreakpointsTrack) => {
           list.forEach(({ width, value }) => {
             cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
             cy.get('[data-testid=cb-max-sixth').should('have.text', value)
           })
         })
@@ -229,6 +250,7 @@ describe('docs-react', () => {
         .then((list: TBreakpointsTrack) => {
           list.forEach(({ width, value }) => {
             cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
             cy.get('[data-testid=cb-max-seventh').should('have.text', value)
           })
         })
