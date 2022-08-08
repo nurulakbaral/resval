@@ -11,7 +11,7 @@ import type {
   TPrimitive,
   TCSSWidthValues,
 } from './types'
-import { trackBreakpoints, setBreakpoints, extendsBreakpoints, sortBreakpointsTrack } from './utils'
+import { trackBreakpoints, setBreakpoints, extendsBreakpoints, sortBreakpointsTrack } from './system'
 
 /**
  * @docs Thanks to usehooks-ts.com/react-hook/use-media-query.
