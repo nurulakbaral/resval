@@ -15,6 +15,12 @@ describe('Check the `isArrayOfNumber` utility so that it gives the expected outp
     expect(isArrayOfNumber([1, 2, 3, 4])).toBe(true)
     expect(isArrayOfNumber([1.1, 2.2, 3.91, 3.1787])).toBe(true)
     expect(isArrayOfNumber([1, 2, 3, NaN])).not.toBe(true)
+    expect(isArrayOfNumber([false, 100, 200, '300', '400.199', true])).toBe(true)
+  })
+
+  test('should return false, because not array of number', () => {
+    expect(isArrayOfNumber([1, 2, '', undefined, null])).toBe(false)
+    expect(isArrayOfNumber([{}, []])).toBe(false)
   })
 })
 
@@ -28,5 +34,7 @@ describe('Check the `isArrayOfCSSUnits` utility so that it gives the expected ou
     expect(isArrayOfCSSUnits(['pxs', 'rempx', 'emem'])).toBe(false)
     expect(isArrayOfCSSUnits(['px', 'rem', 'em'])).toBe(false)
     expect(isArrayOfCSSUnits([...CSSUnits])).toBe(false)
+    expect(isArrayOfCSSUnits([100, null, undefined])).toBe(false)
+    expect(isArrayOfCSSUnits(['100pxs', 1, '300emem'])).toBe(false)
   })
 })
