@@ -12,6 +12,7 @@ import type {
   TCSSWidthValues,
 } from './types'
 import { trackBreakpoints, setBreakpoints, extendsBreakpoints, sortBreakpointsTrack } from './system'
+import { DefaultBeakpoints } from './constants'
 
 /**
  * @docs Thanks to usehooks-ts.com/react-hook/use-media-query.
@@ -64,14 +65,7 @@ export function useMediaQuery<TTypeBreakpointsOptions = TDefaultBreakpoints>(
 export function createResponsiveValues<TTypeBreakpointsOptions extends TBaseObject = TDefaultBreakpoints>(
   options: keyof TTypeBreakpointsOptions extends never ? TOptions<never> : TOptions<TTypeBreakpointsOptions>,
 ) {
-  let defaultBeakpoints: TDefaultBreakpoints = {
-    base: '0px',
-    xs: '320px',
-    sm: '576px',
-    md: '768px',
-    lg: '1080px',
-    xl: '1280px',
-  }
+  let defaultBeakpoints = DefaultBeakpoints
   let { breakpoints: breakpointsOptions, media = 'min' } = options
   let breakpoints = setBreakpoints(defaultBeakpoints, breakpointsOptions)
 

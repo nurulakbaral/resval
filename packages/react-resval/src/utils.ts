@@ -5,6 +5,10 @@ export function isEmptyObject<TTypeObject extends TBaseObject>(obj: TTypeObject)
   return Object.keys(obj).length === 0 && obj.constructor === Object
 }
 
+export function isObject<TTypeObject extends TBaseObject>(obj: TTypeObject) {
+  return obj.constructor === Object
+}
+
 export function isArrayOfNumber(arr: any[]): boolean {
   return arr.every((value) => typeof Number(value) === 'number' && !Number.isNaN(Number(value)))
 }

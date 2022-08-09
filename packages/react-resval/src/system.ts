@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-const */
 import type { TDefaultBreakpoints, TBaseObject, TMedia, TBreakpointsTrack } from './types'
-import { isArrayOfNumber, isArrayOfCSSUnits, isEmptyObject } from './utils'
+import { isArrayOfNumber, isArrayOfCSSUnits, isEmptyObject, isObject } from './utils'
 
 export function trackBreakpoints<TTypeBreakpointTrack extends Array<TBreakpointsTrack>, TTypeBreakpointsQuery>(
   breakpointsTrack: TTypeBreakpointTrack,
@@ -48,11 +48,14 @@ export function trackBreakpoints<TTypeBreakpointTrack extends Array<TBreakpoints
  * @description Use default breakpoints if option breakpoints is empty.
  */
 
-export function setBreakpoints<TTypeBreakpointsOptions extends TBaseObject = TDefaultBreakpoints>(
+export function setBreakpoints<TTypeBreakpointsOptions extends TBaseObject>(
   defaultBeakpoints: TDefaultBreakpoints,
-  optionBreakpoints: TTypeBreakpointsOptions | undefined,
+  optionBreakpoints: TTypeBreakpointsOptions | undefined | null,
 ) {
-  if (typeof optionBreakpoints === 'undefined' || isEmptyObject(optionBreakpoints)) {
+  if (!optionBreakpoints) {
+    return defaultBeakpoints
+  }
+  if (isEmptyObject(optionBreakpoints) || !isObject(optionBreakpoints)) {
     return defaultBeakpoints
   }
   let breakpointsValues = Object.values(optionBreakpoints)
