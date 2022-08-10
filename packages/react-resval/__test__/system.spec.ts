@@ -149,16 +149,7 @@ describe('Check the `extendsBreakpoints` utility so that it gives the expected o
         },
         CustomBreakpoints,
       ),
-    ).toEqual({
-      base: '0px',
-      xs: '320px',
-      sm: '576px',
-      md: '768px',
-      lg: '1080px',
-      xl: '1280px',
-      '900px': '900px',
-      '600px': '600px',
-    })
+    ).toEqual(CustomBreakpoints)
     expect(
       extendsBreakpoints(
         {
