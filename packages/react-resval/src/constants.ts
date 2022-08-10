@@ -23,7 +23,7 @@ export const CSSRelativeUnits: readonly TCSSRelativeUnits[] = [
 ]
 export const CSSUnits: readonly (TCSSAbsoluteUnits | TCSSRelativeUnits)[] = [...CSSAbsoluteUnits, ...CSSRelativeUnits]
 
-export const DefaultBeakpoints: TDefaultBreakpoints = {
+export const DefaultBreakpoints: TDefaultBreakpoints = {
   base: '0px',
   xs: '320px',
   sm: '576px',

@@ -86,6 +86,11 @@ export function extendsBreakpoints<
   TTypeBreakpointsQuery extends Record<string, any>,
   TTypeCurrentBreakpoints extends TDefaultBreakpoints | TBaseObject,
 >(breakpointsQuery: TTypeBreakpointsQuery, currentBreakpoints: TTypeCurrentBreakpoints) {
+  if (!breakpointsQuery || !isObject(breakpointsQuery)) {
+    throw new Error(
+      'Please enter the correct parameters according to the breakpoints specified when calling `createResponsiveValues`.',
+    )
+  }
   let breakpointsQueryKeys = Object.keys(breakpointsQuery)
   let currentBreakpointsKeys = Object.keys(currentBreakpoints)
   function getArbitraryKeys(key: string) {
