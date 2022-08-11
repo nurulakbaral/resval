@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { setBreakpoints, extendsBreakpoints } from '../src/system'
+import { setBreakpoints, extendsBreakpoints, sortBreakpointsTrack } from '../src/system'
 import { DefaultBreakpoints } from '../src/constants'
 
 describe('Check the `setBreakpoints` utility so that it gives the expected output.', () => {
@@ -178,5 +178,28 @@ describe('Check the `extendsBreakpoints` utility so that it gives the expected o
     expect(() => extendsBreakpoints(null as any, DefaultBreakpoints)).toThrow()
     expect(() => extendsBreakpoints(['Hello'] as any, DefaultBreakpoints)).toThrow()
     expect(() => extendsBreakpoints(100 as any, DefaultBreakpoints)).toThrow()
+  })
+})
+
+describe('Check the `sortBreakpointsTrack` utility so that it gives the expected output.', () => {
+  const base = { query: 'base', constraintWidth: '0px', status: false }
+  const xs = { query: 'xs', constraintWidth: '320px', status: false }
+  const sm = { query: 'sm', constraintWidth: '576px', status: false }
+  const md = { query: 'md', constraintWidth: '768px', status: false }
+  const lg = { query: 'lg', constraintWidth: '1080px', status: false }
+  const xl = { query: 'xl', constraintWidth: '1280px', status: false }
+  const $900px = { query: '900px', constraintWidth: '900px', status: false }
+  const $600px = { query: '600px', constraintWidth: '600px', status: false }
+  const $500dot123px = { query: '500.123px', constraintWidth: '500.123px', status: false }
+  const $500dot321px = { query: '500.321px', constraintWidth: '500.321px', status: false }
+  const sortedIntegerBreakpointsTrack = [base, xs, sm, $600px, md, $900px, lg, xl]
+  const sortedFloatBreakpointsTrack = [base, xs, $500dot123px, $500dot321px, sm, $600px, md, $900px, lg, xl]
+  test('should return sorted array', () => {
+    expect(sortBreakpointsTrack([base, xs, sm, md, lg, xl, $900px, $600px])).toEqual(sortedIntegerBreakpointsTrack)
+    expect(sortBreakpointsTrack([xl, $900px, base, xs, sm, md, lg, $600px])).toEqual(sortedIntegerBreakpointsTrack)
+    expect(sortBreakpointsTrack([xl, $900px, base, xs, sm, md, lg, $600px])).toEqual(sortedIntegerBreakpointsTrack)
+    expect(sortBreakpointsTrack([$500dot123px, xl, $900px, base, xs, $500dot321px, sm, md, lg, $600px])).toEqual(
+      sortedFloatBreakpointsTrack,
+    )
   })
 })
