@@ -1,11 +1,11 @@
 /* eslint-disable prefer-const */
 import { createResponsiveValues } from '@resval/react-responsive-values'
 
-export const useVxBdMin = createResponsiveValues({
+export const useVxDbMin = createResponsiveValues({
   media: 'min',
 })
 
-export const useVxBdMax = createResponsiveValues({
+export const useVxDbMax = createResponsiveValues({
   media: 'max',
 })
 
@@ -42,7 +42,7 @@ export default function TestField() {
    * Default Breakpoints (Media: MIN)
    */
 
-  const valFirstBdMin = useVxBdMin({
+  const valFirstDbMin = useVxDbMin({
     base: 'val: base',
     xs: 'val: xs',
     sm: 'val: sm',
@@ -50,21 +50,21 @@ export default function TestField() {
     lg: 'val: lg',
     xl: 'val: xl',
   })
-  const valSecondBdMin = useVxBdMin({
+  const valSecondDbMin = useVxDbMin({
     base: 'val: base',
     md: 'val: md',
   })
-  const valThirdBdMin = useVxBdMin({
+  const valThirdDbMin = useVxDbMin({
     xs: 'val: xs',
     md: 'val: md',
   })
-  const valFourthBdMin = useVxBdMin({})
+  const valFourthDbMin = useVxDbMin({})
 
   /**
    * Default Breakpoints (Media: Max)
    */
 
-  const valFirstBdMax = useVxBdMax({
+  const valFirstDbMax = useVxDbMax({
     base: 'val: base',
     xs: 'val: xs',
     sm: 'val: sm',
@@ -72,15 +72,15 @@ export default function TestField() {
     lg: 'val: lg',
     xl: 'val: xl',
   })
-  const valSecondBdMax = useVxBdMax({
+  const valSecondDbMax = useVxDbMax({
     base: 'val: base',
     md: 'val: md',
   })
-  const valThirdBdMax = useVxBdMax({
+  const valThirdDbMax = useVxDbMax({
     xs: 'val: xs',
     md: 'val: md',
   })
-  const valFourthBdMax = useVxBdMax({})
+  const valFourthDbMax = useVxDbMax({})
 
   /**
    * Custom Breakpoints (Media: MIN)
@@ -172,10 +172,10 @@ export default function TestField() {
        *
        */}
 
-      <h1 data-testid='db-min-first'>{valFirstBdMin}</h1>
-      <h1 data-testid='db-min-second'>{valSecondBdMin}</h1>
-      <h1 data-testid='db-min-third'>{valThirdBdMin}</h1>
-      <h1 data-testid='db-min-fourth'>{valFourthBdMin}</h1>
+      <h1 data-testid='db-min-first'>{valFirstDbMin}</h1>
+      <h1 data-testid='db-min-second'>{valSecondDbMin}</h1>
+      <h1 data-testid='db-min-third'>{valThirdDbMin}</h1>
+      <h1 data-testid='db-min-fourth'>{valFourthDbMin}</h1>
 
       {/**
        *
@@ -183,10 +183,10 @@ export default function TestField() {
        *
        */}
 
-      <h1 data-testid='db-max-first'>{valFirstBdMax}</h1>
-      <h1 data-testid='db-max-second'>{valSecondBdMax}</h1>
-      <h1 data-testid='db-max-third'>{valThirdBdMax}</h1>
-      <h1 data-testid='db-max-fourth'>{valFourthBdMax}</h1>
+      <h1 data-testid='db-max-first'>{valFirstDbMax}</h1>
+      <h1 data-testid='db-max-second'>{valSecondDbMax}</h1>
+      <h1 data-testid='db-max-third'>{valThirdDbMax}</h1>
+      <h1 data-testid='db-max-fourth'>{valFourthDbMax}</h1>
 
       {/**
        *
