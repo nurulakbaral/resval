@@ -37,18 +37,23 @@ export const useVxCbMax = createResponsiveValues({
   media: 'max',
 })
 
+const formatValue = (value: any) => {
+  if (typeof value === 'string') return value
+  return `${JSON.stringify(value)}`
+}
+
 export default function TestField() {
   /**
    * Default Breakpoints (Media: MIN)
    */
 
   const valFirstDbMin = useVxDbMin({
-    base: 'val: base',
-    xs: 'val: xs',
-    sm: 'val: sm',
-    md: 'val: md',
-    lg: 'val: lg',
-    xl: 'val: xl',
+    base: false,
+    xs: true,
+    sm: null,
+    md: undefined,
+    lg: 1,
+    xl: {},
   })
   const valSecondDbMin = useVxDbMin({
     base: 'val: base',
@@ -172,10 +177,10 @@ export default function TestField() {
        *
        */}
 
-      <h1 data-testid='db-min-first'>{valFirstDbMin}</h1>
-      <h1 data-testid='db-min-second'>{valSecondDbMin}</h1>
-      <h1 data-testid='db-min-third'>{valThirdDbMin}</h1>
-      <h1 data-testid='db-min-fourth'>{valFourthDbMin}</h1>
+      <h1 data-testid='db-min-first'>{formatValue(valFirstDbMin)}</h1>
+      <h1 data-testid='db-min-second'>{formatValue(valSecondDbMin)}</h1>
+      <h1 data-testid='db-min-third'>{formatValue(valThirdDbMin)}</h1>
+      <h1 data-testid='db-min-fourth'>{formatValue(valFourthDbMin)}</h1>
 
       {/**
        *

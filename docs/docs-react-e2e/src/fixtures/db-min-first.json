@@ -2,27 +2,27 @@
   "data": [
     {
       "width": 280,
-      "value": "val: base"
+      "value": "false"
     },
     {
       "width": 350,
-      "value": "val: xs"
+      "value": "true"
     },
     {
       "width": 576,
-      "value": "val: sm"
+      "value": "null"
     },
     {
       "width": 768,
-      "value": "val: md"
+      "value": "undefined"
     },
     {
       "width": 1080,
-      "value": "val: lg"
+      "value": "1"
     },
     {
       "width": 1280,
-      "value": "val: xl"
+      "value": "{}"
     }
   ]
 }
