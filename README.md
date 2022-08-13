@@ -6,9 +6,9 @@ Resval stands for Responsive Values, which is a hook that can return a value bas
 
 ### Why?
 
-⚛️ React Responsive Values (Can be combined with breakpoints from the Libs UI theme)
-🐳 Full TypeScript Support!
-📦 Zero-Dependency!
+⚛️ React Responsive Values (Can be combined with breakpoints from the Libs UI theme)\
+🐳 Full TypeScript Support!\
+📦 Zero-Dependency!\
 🤠 Arbitrary Breakpoints!
 
 # Installation
