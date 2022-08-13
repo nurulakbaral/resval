@@ -102,10 +102,13 @@ export function createResponsiveValues<TTypeBreakpointsOptions extends TBaseObje
       // eslint-disable-next-line react-hooks/exhaustive-deps
       [breakpointsTrack],
     )
-
     let currentQuery = currentBreakpoints.query as TTypeBreakpointsKeys
     let snapshotQuery = snapshotBreakpoints.query as TTypeBreakpointsKeys
-    return breakpointsQuery[currentQuery] || breakpointsQuery[snapshotQuery]
+    let isOwnValue = Object.keys(breakpointsQuery).includes(currentQuery as string)
+
+    return breakpointsQuery[currentQuery] !== undefined || isOwnValue
+      ? breakpointsQuery[currentQuery]
+      : breakpointsQuery[snapshotQuery]
   }
 }
 
