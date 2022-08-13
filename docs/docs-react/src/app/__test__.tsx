@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-const */
 import { createResponsiveValues } from '@resval/react-responsive-values'
 
@@ -38,7 +40,7 @@ export const useVxCbMax = createResponsiveValues({
 })
 
 const formatValue = (value: any) => {
-  if (typeof value === 'string') return value
+  if (typeof value === 'string' || typeof value === 'bigint' || typeof value === 'function') return `${value}`
   return `${JSON.stringify(value)}`
 }
 
@@ -52,16 +54,16 @@ export default function TestField() {
     xs: true,
     sm: null,
     md: undefined,
-    lg: 1,
+    lg: 100,
     xl: {},
   })
   const valSecondDbMin = useVxDbMin({
     base: 'val: base',
-    md: 'val: md',
+    md: () => {},
   })
   const valThirdDbMin = useVxDbMin({
     xs: 'val: xs',
-    md: 'val: md',
+    md: BigInt(9007199254740991),
   })
   const valFourthDbMin = useVxDbMin({})
 

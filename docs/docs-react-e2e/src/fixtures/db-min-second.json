@@ -14,15 +14,15 @@
     },
     {
       "width": 768,
-      "value": "val: md"
+      "value": "() => {}"
     },
     {
       "width": 1080,
-      "value": "val: md"
+      "value": "() => {}"
     },
     {
       "width": 1280,
-      "value": "val: md"
+      "value": "() => {}"
     }
   ]
 }
