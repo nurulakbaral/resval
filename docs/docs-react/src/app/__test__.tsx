@@ -190,10 +190,10 @@ export default function TestField() {
        *
        */}
 
-      <h1 data-testid='db-max-first'>{valFirstDbMax}</h1>
-      <h1 data-testid='db-max-second'>{valSecondDbMax}</h1>
-      <h1 data-testid='db-max-third'>{valThirdDbMax}</h1>
-      <h1 data-testid='db-max-fourth'>{valFourthDbMax}</h1>
+      <h1 data-testid='db-max-first'>{formatValue(valFirstDbMax)}</h1>
+      <h1 data-testid='db-max-second'>{formatValue(valSecondDbMax)}</h1>
+      <h1 data-testid='db-max-third'>{formatValue(valThirdDbMax)}</h1>
+      <h1 data-testid='db-max-fourth'>{formatValue(valFourthDbMax)}</h1>
 
       {/**
        *
@@ -201,27 +201,27 @@ export default function TestField() {
        *
        */}
 
-      <h1 data-testid='cb-min-first'>{valFirstCbMin}</h1>
-      <h1 data-testid='cb-min-second'>{valSecondCbMin}</h1>
-      <h1 data-testid='cb-min-third'>{valThirdCbMin}</h1>
-      <h1 data-testid='cb-min-fourth'>{valFourthCbMin}</h1>
-      <h1 data-testid='cb-min-fifth'>{valFifthCbMin}</h1>
-      <h1 data-testid='cb-min-sixth'>{valSixthCbMin}</h1>
-      <h1 data-testid='cb-min-seventh'>{valSeventhCbMin}</h1>
+      <h1 data-testid='cb-min-first'>{formatValue(valFirstCbMin)}</h1>
+      <h1 data-testid='cb-min-second'>{formatValue(valSecondCbMin)}</h1>
+      <h1 data-testid='cb-min-third'>{formatValue(valThirdCbMin)}</h1>
+      <h1 data-testid='cb-min-fourth'>{formatValue(valFourthCbMin)}</h1>
+      <h1 data-testid='cb-min-fifth'>{formatValue(valFifthCbMin)}</h1>
+      <h1 data-testid='cb-min-sixth'>{formatValue(valSixthCbMin)}</h1>
+      <h1 data-testid='cb-min-seventh'>{formatValue(valSeventhCbMin)}</h1>
 
       {/**
        *
-       * Custom Breakpoints (Media: MIN)
+       * Custom Breakpoints (Media: MAX)
        *
        */}
 
-      <h1 data-testid='cb-max-first'>{valFirstCbMax}</h1>
-      <h1 data-testid='cb-max-second'>{valSecondCbMax}</h1>
-      <h1 data-testid='cb-max-third'>{valThirdCbMax}</h1>
-      <h1 data-testid='cb-max-fourth'>{valFourthCbMax}</h1>
-      <h1 data-testid='cb-max-fifth'>{valFifthCbMax}</h1>
-      <h1 data-testid='cb-max-sixth'>{valSixthCbMax}</h1>
-      <h1 data-testid='cb-max-seventh'>{valSeventhCbMax}</h1>
+      <h1 data-testid='cb-max-first'>{formatValue(valFirstCbMax)}</h1>
+      <h1 data-testid='cb-max-second'>{formatValue(valSecondCbMax)}</h1>
+      <h1 data-testid='cb-max-third'>{formatValue(valThirdCbMax)}</h1>
+      <h1 data-testid='cb-max-fourth'>{formatValue(valFourthCbMax)}</h1>
+      <h1 data-testid='cb-max-fifth'>{formatValue(valFifthCbMax)}</h1>
+      <h1 data-testid='cb-max-sixth'>{formatValue(valSixthCbMax)}</h1>
+      <h1 data-testid='cb-max-seventh'>{formatValue(valSeventhCbMax)}</h1>
     </div>
   )
 }
