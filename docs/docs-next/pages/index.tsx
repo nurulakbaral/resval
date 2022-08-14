@@ -1,13 +1,12 @@
-import { createResponsiveValues } from '@resval/react-responsive-values'
-import { createMQ } from 'react-mq'
-
-export const useVx = createResponsiveValues({
-  media: 'min',
-})
-
-export const useMQ = createMQ('(min-width: 768px)')
+import { useMediaQueryChakra, useMediaQueryHooks } from 'react-mq'
 
 export default function Index() {
-  const matches = useMQ()
-  return <div>Value: {`${matches}`}</div>
+  const chakraValue = useMediaQueryChakra('(min-width: 768px)')
+  // const hooksValue = useMediaQueryHooks('(min-width: 768px)')
+  return (
+    <>
+      <div>Value: {`${chakraValue}`}</div>
+      {/* <div>Value: {`${hooksValue}`}</div> */}
+    </>
+  )
 }

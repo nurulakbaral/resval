@@ -1,13 +1,25 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react'
 
-function useMediaQuery(query: string): boolean {
-  const getMatches = (query: string): boolean => {
-    // Prevents SSR issues
-    if (typeof window !== 'undefined') {
-      return window.matchMedia(query).matches
+const noop = (...params: any) => {}
+
+const mockEnv: any = {
+  matchMedia() {
+    return {
+      matches: false,
+      addListener: noop,
+      removeListener: noop,
     }
-    return false
+  },
+  addEventListener: noop,
+  removeEventListener: noop,
+}
+
+export function useMediaQueryHooks(query: string): boolean {
+  const env = typeof window !== 'undefined' ? window : mockEnv
+  const getMatches = (query: string): boolean => {
+    return env.matchMedia(query).matches
   }
 
   const [matches, setMatches] = React.useState<boolean>(getMatches(query))
@@ -17,37 +29,19 @@ function useMediaQuery(query: string): boolean {
   }
 
   React.useEffect(() => {
-    const matchMedia = window.matchMedia(query)
+    const matchMedia = env.matchMedia(query)
 
     // Triggered at the first client-side load and if query changes
     handleChange()
 
     // Listen matchMedia
-    if (matchMedia.addListener) {
-      matchMedia.addListener(handleChange)
-    } else {
-      matchMedia.addEventListener('change', handleChange)
-    }
+    matchMedia.addEventListener('change', handleChange)
 
     return () => {
-      if (matchMedia.removeListener) {
-        matchMedia.removeListener(handleChange)
-      } else {
-        matchMedia.removeEventListener('change', handleChange)
-      }
+      matchMedia.removeEventListener('change', handleChange)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query])
 
   return matches
 }
-
-export function createMQ(param: string) {
-  return function useMQ() {
-    const match = useMediaQuery(param)
-    // TODO: If in SSR condition what to return?
-    return match
-  }
-}
-
-export default createMQ
