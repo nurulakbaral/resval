@@ -23,7 +23,7 @@ export function useMediaQuery<TTypeBreakpointsOptions = TDefaultBreakpoints>(
   media: TMedia,
 ) {
   // Notes: Get initial breakpoints
-  let [matches, setMatches] = React.useState<Array<TBreakpointsTrack> | false>(getMatches(queries))
+  let [matches, setMatches] = React.useState<Array<TBreakpointsTrack> | false | undefined>(undefined)
 
   React.useEffect(() => {
     // Notes: Get breakpoints on mount
@@ -75,7 +75,7 @@ export function createResponsiveValues<TTypeBreakpointsOptions extends TBaseObje
     TTypeBreakpointsQuery extends Partial<Record<TTypeBreakpointsKeys, TTypeBreakpointValues>>,
   >(
     breakpointsQuery: keyof TTypeBreakpointsQuery extends TTypeBreakpointsKeys ? TTypeBreakpointsQuery : never,
-  ): TTypeBreakpointsQuery[keyof TTypeBreakpointsQuery] {
+  ): TTypeBreakpointsQuery[keyof TTypeBreakpointsQuery] | undefined {
     /**
      * @description Since the value is done only on the first render, it is optimized with useMemo.
      */
@@ -85,32 +85,36 @@ export function createResponsiveValues<TTypeBreakpointsOptions extends TBaseObje
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     let { breakpointsTrack } = useMediaQuery(arbitraryBreakpoints, media)
-    if (!breakpointsTrack) {
-      throw new Error(
-        'This library is still in beta, so a lot of things are still in the testing phase, like SSR. So, for now it can only run on React (non-SSR like Next.js).',
-      )
-    }
     let sortedBreakpointsTrack = React.useMemo(
       function () {
+        if (!breakpointsTrack) {
+          return
+        }
         return sortBreakpointsTrack(breakpointsTrack as Array<TBreakpointsTrack>)
       },
-      // eslint-disable-next-line react-hooks/exhaustive-deps
       [breakpointsTrack],
     )
-    let { currentBreakpoints, snapshotBreakpoints } = React.useMemo(
-      function () {
-        return trackBreakpoints(sortedBreakpointsTrack, breakpointsQuery, media)
-      },
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      [breakpointsTrack],
-    )
-    let currentQuery = currentBreakpoints.query as TTypeBreakpointsKeys
-    let snapshotQuery = snapshotBreakpoints.query as TTypeBreakpointsKeys
-    let isOwnValue = Object.keys(breakpointsQuery).includes(currentQuery as string)
+    let { currentBreakpoints, snapshotBreakpoints } =
+      React.useMemo(
+        function () {
+          if (!sortedBreakpointsTrack || !breakpointsTrack) {
+            return
+          }
+          return trackBreakpoints(sortedBreakpointsTrack, breakpointsQuery, media)
+        },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [breakpointsTrack],
+      ) || {}
+    if (!breakpointsTrack) {
+      return undefined
+    }
+    let currentQuery = currentBreakpoints?.query as TTypeBreakpointsKeys
+    let snapshotQuery = snapshotBreakpoints?.query as TTypeBreakpointsKeys
+    let isQueryDefined = Object.keys(breakpointsQuery).includes(currentQuery as string)
+    let currentValue = breakpointsQuery[currentQuery]
+    let snapshotValue = breakpointsQuery[snapshotQuery]
 
-    return breakpointsQuery[currentQuery] !== undefined || isOwnValue
-      ? breakpointsQuery[currentQuery]
-      : breakpointsQuery[snapshotQuery]
+    return currentValue !== undefined || isQueryDefined ? currentValue : snapshotValue
   }
 }
 

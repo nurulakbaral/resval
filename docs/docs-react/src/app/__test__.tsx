@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-const */
-// import { createResponsiveValues } from '@resval/react-responsive-values'
-import { createResponsiveValues } from '../../../../dist/packages/react-resval'
+import { createResponsiveValues } from '@resval/react-responsive-values'
+// import { createResponsiveValues } from '../../../../dist/packages/react-resval'
 
 export const useVxDbMin = createResponsiveValues({
   media: 'min',
