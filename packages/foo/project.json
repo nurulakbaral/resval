@@ -13,8 +13,9 @@
         "project": "packages/foo/package.json",
         "entryFile": "packages/foo/src/index.ts",
         "external": ["react/jsx-runtime"],
-        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "rollupConfig": "rollup.config.js",
         "compiler": "babel",
+        "format": ["esm", "cjs"],
         "assets": [
           {
             "glob": "packages/foo/README.md",
