@@ -4,6 +4,7 @@
   "projects": {
     "docs-react": "docs/docs-react",
     "docs-react-e2e": "docs/docs-react-e2e",
+    "foo": "packages/foo",
     "react-resval": "packages/react-resval"
   }
 }
