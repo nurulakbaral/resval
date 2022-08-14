@@ -1,6 +1,5 @@
 import { TBreakpointsTrack } from './types'
 import { HEIGHT_VIEWPORT, SET_VIEWPORT } from './constants'
-/* eslint-disable cypress/no-unnecessary-waiting */
 
 describe('docs-react', () => {
   /**
