@@ -86,7 +86,9 @@ export function createResponsiveValues<TTypeBreakpointsOptions extends TBaseObje
     }, [])
     let { breakpointsTrack } = useMediaQuery(arbitraryBreakpoints, media)
     if (!breakpointsTrack) {
-      throw new Error('Window is not defined')
+      throw new Error(
+        'This library is still in beta, so a lot of things are still in the testing phase, like SSR. So, for now it can only run on React (non-SSR like Next.js).',
+      )
     }
     let sortedBreakpointsTrack = React.useMemo(
       function () {

@@ -2,6 +2,8 @@
 
 Resval stands for Responsive Values, which is a hook that can return a value based on the current breakpoint. This hook can also respond to the size of the window.
 
+⚒️ For now, Resval is only available for React (non-SSR like Next.js)!
+
 ### Why?
 
 ⚛️ React Responsive Values (Can be combined with breakpoints from the Libs UI theme)\
