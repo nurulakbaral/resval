@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react'
 
-function useMediaQuery(query: string): boolean {
+function useMediaQuery(query: string): any {
   const getMatches = (query: string): boolean => {
     // Prevents SSR issues
     if (typeof window !== 'undefined') {
@@ -40,11 +41,10 @@ function useMediaQuery(query: string): boolean {
 
   return matches
 }
-
 export function createMQ(param: string) {
   return function useMQ() {
-    const isMobile = useMediaQuery('(max-width: 768px)')
-    return isMobile
+    const match = useMediaQuery(param)
+    return match
   }
 }
 
