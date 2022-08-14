@@ -1,4 +1,23 @@
 {
   "name": "@resval/react-responsive-values",
-  "version": "0.0.1-beta"
+  "version": "0.0.1-beta",
+  "author": "nurulakbaral@gmail.com",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "hooks",
+    "responsive-web",
+    "responsive-values"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nurulakbaral/resval.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nurulakbaral/resval/issues"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
 }
