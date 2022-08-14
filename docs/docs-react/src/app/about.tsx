@@ -1,4 +1,5 @@
-import { createResponsiveValues } from '@resval/react-responsive-values'
+// import { createResponsiveValues } from '@resval/react-responsive-values'
+import { createResponsiveValues } from '../../../../dist/packages/react-resval'
 
 const breakpoints = {
   base: '0px',

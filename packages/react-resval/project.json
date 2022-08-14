@@ -13,8 +13,9 @@
         "project": "packages/react-resval/package.json",
         "entryFile": "packages/react-resval/src/index.ts",
         "external": ["react/jsx-runtime"],
-        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "rollupConfig": "rollup.config.js",
         "compiler": "babel",
+        "format": ["esm", "cjs"],
         "assets": [
           {
             "glob": "packages/react-resval/README.md",
