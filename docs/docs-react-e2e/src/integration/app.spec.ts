@@ -256,4 +256,73 @@ describe('docs-react', () => {
         })
     })
   })
+
+  describe('should display the appropriate value for Additional Breakpoints (Media: MIN)', () => {
+    it('should display for first values', () => {
+      cy.fixture('add-min-first.json')
+        .its('data')
+        .then((list: TBreakpointsTrack) => {
+          list.forEach(({ width, value }) => {
+            cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
+            cy.get('[data-testid=add-min-first').should('have.text', value)
+          })
+        })
+    })
+    it('should display for second values', () => {
+      cy.fixture('add-min-second.json')
+        .its('data')
+        .then((list: TBreakpointsTrack) => {
+          list.forEach(({ width, value }) => {
+            cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
+            cy.get('[data-testid=add-min-second').should('have.text', value)
+          })
+        })
+    })
+    it('should display for third values', () => {
+      cy.fixture('add-min-third.json')
+        .its('data')
+        .then((list: TBreakpointsTrack) => {
+          list.forEach(({ width, value }) => {
+            cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
+            cy.get('[data-testid=add-min-third').should('have.text', value)
+          })
+        })
+    })
+    it('should display for fourth values', () => {
+      cy.fixture('add-min-fourth.json')
+        .its('data')
+        .then((list: TBreakpointsTrack) => {
+          list.forEach(({ width, value }) => {
+            cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
+            cy.get('[data-testid=add-min-fourth').should('have.text', value)
+          })
+        })
+    })
+    it('should display for fifth values', () => {
+      cy.fixture('add-min-fifth.json')
+        .its('data')
+        .then((list: TBreakpointsTrack) => {
+          list.forEach(({ width, value }) => {
+            cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
+            cy.get('[data-testid=add-min-fifth').should('have.text', value)
+          })
+        })
+    })
+    it('should display for sixth values', () => {
+      cy.fixture('add-min-sixth.json')
+        .its('data')
+        .then((list: TBreakpointsTrack) => {
+          list.forEach(({ width, value }) => {
+            cy.viewport(width, HEIGHT_VIEWPORT)
+            cy.wait(SET_VIEWPORT)
+            cy.get('[data-testid=add-min-sixth').should('have.text', value)
+          })
+        })
+    })
+  })
 })

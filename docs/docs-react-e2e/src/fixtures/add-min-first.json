@@ -1,0 +1,28 @@
+{
+  "data": [
+    {
+      "width": 280,
+      "value": "true"
+    },
+    {
+      "width": 350,
+      "value": "true"
+    },
+    {
+      "width": 576,
+      "value": "true"
+    },
+    {
+      "width": 768,
+      "value": "false"
+    },
+    {
+      "width": 1080,
+      "value": "false"
+    },
+    {
+      "width": 1280,
+      "value": "false"
+    }
+  ]
+}

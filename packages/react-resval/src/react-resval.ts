@@ -94,6 +94,7 @@ export function createResponsiveValues<TTypeBreakpointsOptions extends TBaseObje
       },
       [breakpointsTrack],
     )
+
     let { currentBreakpoints, snapshotBreakpoints } =
       React.useMemo(
         function () {
@@ -105,9 +106,12 @@ export function createResponsiveValues<TTypeBreakpointsOptions extends TBaseObje
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [breakpointsTrack],
       ) || {}
+
+    // Notes: Prerendering from SSR
     if (!breakpointsTrack) {
       return undefined
     }
+
     let currentQuery = currentBreakpoints?.query as TTypeBreakpointsKeys
     let snapshotQuery = snapshotBreakpoints?.query as TTypeBreakpointsKeys
     let isQueryDefined = Object.keys(breakpointsQuery).includes(currentQuery as string)

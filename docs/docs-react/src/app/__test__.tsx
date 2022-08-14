@@ -4,6 +4,19 @@
 import { createResponsiveValues } from '@resval/react-responsive-values'
 // import { createResponsiveValues } from '../../../../dist/packages/react-resval'
 
+/**
+ * Urils
+ */
+
+const formatValue = (value: any) => {
+  if (typeof value === 'string' || typeof value === 'bigint' || typeof value === 'function') return `${value}`
+  return `${JSON.stringify(value)}`
+}
+
+/**
+ * Default Test Cases
+ */
+
 export const useVxDbMin = createResponsiveValues({
   media: 'min',
 })
@@ -40,10 +53,13 @@ export const useVxCbMax = createResponsiveValues({
   media: 'max',
 })
 
-const formatValue = (value: any) => {
-  if (typeof value === 'string' || typeof value === 'bigint' || typeof value === 'function') return `${value}`
-  return `${JSON.stringify(value)}`
-}
+/**
+ * Additional Test Cases
+ */
+
+export const useVxFalsyMin = createResponsiveValues({
+  media: 'min',
+})
 
 export default function TestField() {
   /**
@@ -172,6 +188,20 @@ export default function TestField() {
   })
   const valSeventhCbMax = useVxCbMax({})
 
+  /**
+   * Additional Breakpoints (Media: MIN)
+   */
+
+  // Mobile
+  const isMobileFalse = useVxFalsyMin({ base: true, md: false })
+  const isMobileUndefined = useVxFalsyMin({ base: true, md: undefined })
+  const isMobileNull = useVxFalsyMin({ base: true, md: null })
+
+  // Desktop
+  const isDesktopFalse = useVxFalsyMin({ base: false, md: true })
+  const isDesktopUndefined = useVxFalsyMin({ base: undefined, md: true })
+  const isDesktopNull = useVxFalsyMin({ base: null, md: true })
+
   return (
     <div>
       {/**
@@ -223,6 +253,19 @@ export default function TestField() {
       <h1 data-testid='cb-max-fifth'>{formatValue(valFifthCbMax)}</h1>
       <h1 data-testid='cb-max-sixth'>{formatValue(valSixthCbMax)}</h1>
       <h1 data-testid='cb-max-seventh'>{formatValue(valSeventhCbMax)}</h1>
+
+      {/**
+       *
+       * Additional Breakpoints (Media: min)
+       *
+       */}
+
+      <h1 data-testid='add-min-first'>{formatValue(isMobileFalse)}</h1>
+      <h1 data-testid='add-min-second'>{formatValue(isMobileUndefined)}</h1>
+      <h1 data-testid='add-min-third'>{formatValue(isMobileNull)}</h1>
+      <h1 data-testid='add-min-fourth'>{formatValue(isDesktopFalse)}</h1>
+      <h1 data-testid='add-min-fifth'>{formatValue(isDesktopUndefined)}</h1>
+      <h1 data-testid='add-min-sixth'>{formatValue(isDesktopNull)}</h1>
     </div>
   )
 }

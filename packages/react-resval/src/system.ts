@@ -17,7 +17,7 @@ export function trackBreakpoints<TTypeBreakpointTrack extends Array<TBreakpoints
     status: false,
   }
   let isCurrentBreakpointsFound = false
-  let isQueryDefined: TTypeBreakpointsQuery[keyof TTypeBreakpointsQuery] | string = ''
+  let isQueryDefined = false
   let currentBreakpoints: TBreakpointsTrack = { ...initBreakpoints }
   let snapshotBreakpoints: TBreakpointsTrack = { ...initBreakpoints }
   let idx = media === 'min' ? breakpointsTrack.length - 1 : 0
@@ -27,7 +27,8 @@ export function trackBreakpoints<TTypeBreakpointTrack extends Array<TBreakpoints
    */
 
   for (let i = idx; media === 'min' ? i >= 0 : i < breakpointsTrack.length; media === 'min' ? i-- : i++) {
-    isQueryDefined = breakpointsQuery[breakpointsTrack[i].query as keyof TTypeBreakpointsQuery]
+    const currentQuery = breakpointsTrack[i].query
+    isQueryDefined = Object.keys(breakpointsQuery).includes(currentQuery as string)
     if (breakpointsTrack[i].status && !isCurrentBreakpointsFound) {
       currentBreakpoints = { ...breakpointsTrack[i] }
       isCurrentBreakpointsFound = true
