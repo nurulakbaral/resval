@@ -100,7 +100,7 @@ export function useMediaQueryHooks(query: string): boolean {
     return env.window.matchMedia(query).matches
   }
 
-  const [matches, setMatches] = React.useState<boolean>(getMatches(query))
+  const [matches, setMatches] = React.useState<boolean>(false)
 
   function handleChange() {
     setMatches(getMatches(query))
