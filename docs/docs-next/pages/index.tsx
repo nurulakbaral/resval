@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useMediaQueryChakra, useMediaQueryHooks } from 'react-mq'
 
 export default function Index() {
