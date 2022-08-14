@@ -9,9 +9,5 @@ export const useMQ = createMQ('(min-width: 768px)')
 
 export default function Index() {
   const matches = useMQ()
-  // const value = useVx({
-  //   base: 'hello',
-  //   md: 'hai',
-  // })
   return <div>Value: {`${matches}`}</div>
 }

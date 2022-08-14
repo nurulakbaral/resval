@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react'
 
-function useMediaQuery(query: string): any {
+function useMediaQuery(query: string): boolean {
   const getMatches = (query: string): boolean => {
     // Prevents SSR issues
     if (typeof window !== 'undefined') {
@@ -41,9 +41,11 @@ function useMediaQuery(query: string): any {
 
   return matches
 }
+
 export function createMQ(param: string) {
   return function useMQ() {
     const match = useMediaQuery(param)
+    // TODO: If in SSR condition what to return?
     return match
   }
 }
