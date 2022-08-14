@@ -17,11 +17,11 @@ const formatValue = (value: any) => {
  * Default Test Cases
  */
 
-export const useVxDbMin = createResponsiveValues({
+const useVxDbMin = createResponsiveValues({
   media: 'min',
 })
 
-export const useVxDbMax = createResponsiveValues({
+const useVxDbMax = createResponsiveValues({
   media: 'max',
 })
 
@@ -34,7 +34,7 @@ const customBreakpointsMin = {
   desktop: '1280px',
 }
 
-export const useVxCbMin = createResponsiveValues({
+const useVxCbMin = createResponsiveValues({
   breakpoints: { ...customBreakpointsMin },
   media: 'min',
 })
@@ -48,7 +48,7 @@ const customBreakpointsMax = {
   desktop: 1280,
 }
 
-export const useVxCbMax = createResponsiveValues({
+const useVxCbMax = createResponsiveValues({
   breakpoints: { ...customBreakpointsMax },
   media: 'max',
 })
@@ -57,7 +57,7 @@ export const useVxCbMax = createResponsiveValues({
  * Additional Test Cases
  */
 
-export const useVxFalsyMin = createResponsiveValues({
+const useVxFalsyMin = createResponsiveValues({
   media: 'min',
 })
 

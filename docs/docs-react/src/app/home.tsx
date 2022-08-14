@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { createResponsiveValues } from '@resval/react-responsive-values'
 
-export const vx = createResponsiveValues({
+const vx = createResponsiveValues({
   breakpoints: {
     base: 0,
     xs: 320,

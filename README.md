@@ -37,7 +37,7 @@ const breakpoints = {
   xl: '1280px',
 }
 
-export const useVx = createResponsiveValues({
+const useVx = createResponsiveValues({
   breakpoints: { ...breakpoints },
   media: 'min',
 })
