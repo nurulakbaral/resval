@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@resval/react-responsive-values": ["packages/react-resval/src/index.ts"]
+      "@resval/react-responsive-values": ["packages/react-resval/src/index.ts"],
+      "react-mq": ["packages/react-mq/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

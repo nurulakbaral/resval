@@ -1,0 +1,43 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/react-mq/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/react-mq",
+        "tsConfig": "packages/react-mq/tsconfig.lib.json",
+        "project": "packages/react-mq/package.json",
+        "entryFile": "packages/react-mq/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": "rollup.config.js",
+        "compiler": "babel",
+        "assets": [
+          {
+            "glob": "packages/react-mq/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/react-mq/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/react-mq"],
+      "options": {
+        "jestConfig": "packages/react-mq/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

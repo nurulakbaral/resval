@@ -6,6 +6,7 @@
     "docs-next-e2e": "docs/docs-next-e2e",
     "docs-react": "docs/docs-react",
     "docs-react-e2e": "docs/docs-react-e2e",
+    "react-mq": "packages/react-mq",
     "react-resval": "packages/react-resval"
   }
 }
