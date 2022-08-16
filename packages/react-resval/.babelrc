@@ -4,7 +4,7 @@
       "@nrwl/react/babel",
       {
         "runtime": "automatic",
-        "useBuiltIns": "entry"
+        "useBuiltIns": "usage"
       }
     ]
   ],
