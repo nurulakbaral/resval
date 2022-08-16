@@ -1,6 +1,6 @@
 {
   "name": "@resval/react-responsive-values",
-  "version": "0.0.10-beta",
+  "version": "0.0.11-beta",
   "author": "nurulakbaral@gmail.com",
   "license": "MIT",
   "keywords": [
@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/nurulakbaral/resval/issues"
   },
-  "peerDependencies": {
+  "dependencies": {
     "core-js": "^3.24.1"
   }
 }
