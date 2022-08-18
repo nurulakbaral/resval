@@ -1,8 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react'
-import { useVx } from '../hooks/use-vx'
+import { useVx } from '../../hooks/use-vx'
 
-export function Text(props: any) {
+export interface TextProps {
+  style: React.CSSProperties
+}
+
+export function Text({ style }: TextProps) {
   const color = useVx({
     base: 'red',
     md: 'green',
@@ -14,8 +17,10 @@ export function Text(props: any) {
   return (
     <h1
       style={{
+        fontFamily: 'sans-serif',
         color,
         fontSize,
+        ...style,
       }}
     >
       Hello Resval!
