@@ -249,7 +249,7 @@ describe('Check the `trackBreakpoints` utility so that it gives the expected out
       ),
     ).toEqual({
       currentBreakpoints: tmd,
-      snapshotBreakpoints: tmd,
+      closestBreakpoints: tmd,
     })
   })
   test('should return snapshot current (600px) and snapshot (base) - Media (MIN)', () => {
@@ -264,7 +264,7 @@ describe('Check the `trackBreakpoints` utility so that it gives the expected out
       ),
     ).toEqual({
       currentBreakpoints: t$600px,
-      snapshotBreakpoints: tbase,
+      closestBreakpoints: tbase,
     })
   })
   test('should return snapshot current (xs) and snapshot (empty) - Media (MIN)', () => {
@@ -279,7 +279,7 @@ describe('Check the `trackBreakpoints` utility so that it gives the expected out
       ),
     ).toEqual({
       currentBreakpoints: txs,
-      snapshotBreakpoints: emptyTrack,
+      closestBreakpoints: emptyTrack,
     })
   })
   test('should return snapshot current (md) and snapshot (md) - Media (MAX)', () => {
@@ -294,7 +294,7 @@ describe('Check the `trackBreakpoints` utility so that it gives the expected out
       ),
     ).toEqual({
       currentBreakpoints: tmd,
-      snapshotBreakpoints: tmd,
+      closestBreakpoints: tmd,
     })
   })
   test('should return snapshot current (900px) and snapshot (empty) - Media (MAX)', () => {
@@ -309,7 +309,7 @@ describe('Check the `trackBreakpoints` utility so that it gives the expected out
       ),
     ).toEqual({
       currentBreakpoints: t$900px,
-      snapshotBreakpoints: emptyTrack,
+      closestBreakpoints: emptyTrack,
     })
   })
 })

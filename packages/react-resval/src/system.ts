@@ -9,7 +9,7 @@ export function trackBreakpoints<TTypeBreakpointTrack extends Array<TBreakpoints
   media: TMedia,
 ): {
   currentBreakpoints: TBreakpointsTrack
-  snapshotBreakpoints: TBreakpointsTrack
+  closestBreakpoints: TBreakpointsTrack
 } {
   const initBreakpoints = {
     query: '',
@@ -19,7 +19,7 @@ export function trackBreakpoints<TTypeBreakpointTrack extends Array<TBreakpoints
   let isCurrentBreakpointsFound = false
   let breakpointsQueryKeys = Object.keys(breakpointsQuery)
   let currentBreakpoints: TBreakpointsTrack = { ...initBreakpoints }
-  let snapshotBreakpoints: TBreakpointsTrack = { ...initBreakpoints }
+  let closestBreakpoints: TBreakpointsTrack = { ...initBreakpoints }
   let idx = media === 'min' ? breakpointsTrack.length - 1 : 0
 
   /**
@@ -34,14 +34,14 @@ export function trackBreakpoints<TTypeBreakpointTrack extends Array<TBreakpoints
       isCurrentBreakpointsFound = true
     }
     if (breakpointsTrack[i].status && isQueryDefined) {
-      snapshotBreakpoints = { ...breakpointsTrack[i] }
+      closestBreakpoints = { ...breakpointsTrack[i] }
       break
     }
   }
 
   return {
     currentBreakpoints,
-    snapshotBreakpoints,
+    closestBreakpoints,
   }
 }
 

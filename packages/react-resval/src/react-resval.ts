@@ -95,7 +95,7 @@ export function createResponsiveValues<TTypeBreakpointsOptions extends TBaseObje
       [breakpointsTrack],
     )
 
-    let { currentBreakpoints, snapshotBreakpoints } =
+    let { currentBreakpoints, closestBreakpoints } =
       React.useMemo(
         function () {
           if (!sortedBreakpointsTrack || !breakpointsTrack) {
@@ -113,12 +113,12 @@ export function createResponsiveValues<TTypeBreakpointsOptions extends TBaseObje
     }
 
     let currentQuery = currentBreakpoints?.query as TTypeBreakpointsKeys
-    let snapshotQuery = snapshotBreakpoints?.query as TTypeBreakpointsKeys
+    let closestQuery = closestBreakpoints?.query as TTypeBreakpointsKeys
     let isQueryDefined = Object.keys(breakpointsQuery).includes(currentQuery as string)
     let currentValue = breakpointsQuery[currentQuery]
-    let snapshotValue = breakpointsQuery[snapshotQuery]
+    let closestValue = breakpointsQuery[closestQuery]
 
-    return currentValue !== undefined || isQueryDefined ? currentValue : snapshotValue
+    return currentValue !== undefined || isQueryDefined ? currentValue : closestValue
   }
 }
 
