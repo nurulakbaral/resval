@@ -107,14 +107,21 @@ export function createResponsiveValues<TTypeBreakpointsOptions extends TBaseObje
         [breakpointsTrack],
       ) || {}
 
+    let currentQuery = currentBreakpoints?.query as TTypeBreakpointsKeys
+    let closestQuery = closestBreakpoints?.query as TTypeBreakpointsKeys
+    let isQueryDefined = React.useMemo(
+      function () {
+        return Object.keys(breakpointsQuery).includes(currentQuery as string)
+      },
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      [currentQuery],
+    )
+
     // Notes: Prerendering from SSR
     if (!breakpointsTrack) {
       return undefined
     }
 
-    let currentQuery = currentBreakpoints?.query as TTypeBreakpointsKeys
-    let closestQuery = closestBreakpoints?.query as TTypeBreakpointsKeys
-    let isQueryDefined = Object.keys(breakpointsQuery).includes(currentQuery as string)
     let currentValue = breakpointsQuery[currentQuery]
     let closestValue = breakpointsQuery[closestQuery]
 
