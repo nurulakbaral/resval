@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-const */
 import * as React from 'react'
 import type {
@@ -18,7 +19,7 @@ import { DefaultBreakpoints } from './constants'
  * @docs Thanks to usehooks-ts.com/react-hook/use-media-query.
  */
 
-export function useMediaQuery<TTypeBreakpointsOptions = TDefaultBreakpoints>(
+export function useMediaQuery<TTypeBreakpointsOptions extends Record<string, any> = TDefaultBreakpoints>(
   queries: TTypeBreakpointsOptions,
   media: TMedia,
 ) {

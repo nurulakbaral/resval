@@ -3,7 +3,10 @@
 import type { TDefaultBreakpoints, TBaseObject, TMedia, TBreakpointsTrack } from './types'
 import { isArrayOfNumber, isArrayOfCSSUnits, isEmptyObject, isObject } from './utils'
 
-export function trackBreakpoints<TTypeBreakpointTrack extends Array<TBreakpointsTrack>, TTypeBreakpointsQuery>(
+export function trackBreakpoints<
+  TTypeBreakpointTrack extends Array<TBreakpointsTrack>,
+  TTypeBreakpointsQuery extends Record<string, any>,
+>(
   breakpointsTrack: TTypeBreakpointTrack,
   breakpointsQuery: TTypeBreakpointsQuery,
   media: TMedia,
