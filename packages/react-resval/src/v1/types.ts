@@ -5,6 +5,8 @@
  * Types Utils
  */
 
+export type TPrimitive<T = string> = T & {}
+
 export type TCSSAbsoluteUnits = 'px' | 'cm' | 'mm' | 'Q' | 'in' | 'pc' | 'pt'
 
 export type Numbs = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
