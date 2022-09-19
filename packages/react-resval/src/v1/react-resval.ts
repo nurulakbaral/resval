@@ -4,7 +4,7 @@
 
 import * as React from 'react'
 import type { TOptions, TPrimitive } from './types'
-import { setBreakpoints } from './system'
+import { extendsBreakpoints, setBreakpoints } from './system'
 import { DefaultBreakpoints } from './constants'
 
 function useMediaQuery() {}
@@ -12,6 +12,9 @@ function useMediaQuery() {}
 export function createResponsiveValues<TTypeOptionBreakpoints extends Record<string, string>>(
   options: TOptions<TTypeOptionBreakpoints>,
 ) {
+  let { breakpoints: breakpointsOptions, media = 'min' } = options
+  let breakpoints = setBreakpoints(DefaultBreakpoints, breakpointsOptions)
+
   return function useResponsiveValues<
     TTypeQueriesBreakpoints extends Record<string, Partial<Record<keyof TTypeOptionBreakpoints, Values>>>,
     Values extends TPrimitive<string> | TPrimitive<number> | {} | null | undefined,
@@ -26,9 +29,7 @@ export function createResponsiveValues<TTypeOptionBreakpoints extends Record<str
       Exclude<keyof TTypeOptionBreakpoints, keyof TTypeQueriesBreakpoints[K]>
     >]
   } {
-    let { breakpoints: breakpointsOptions, media = 'min' } = options
-    let breakpoints = setBreakpoints(DefaultBreakpoints, breakpointsOptions)
-
+    let arbitraryBreakpoints = extendsBreakpoints(breakpoints, queriesBreakpoints)
     return {} as any
   }
 }

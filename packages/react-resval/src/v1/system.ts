@@ -1,11 +1,11 @@
 /* eslint-disable prefer-const */
 
-import type { TDefaultBreakpoints } from './types'
-import { isArrayOfCSSUnits, isEmptyObject, isObject } from './utils'
+import type { TDefaultBreakpoints, TRecordKeys } from './types'
+import { isArrayOfCSSUnits, isEmptyObject, isObject, isCSSUnits } from './utils'
 
 export function setBreakpoints(
   defaultBreakpoints: TDefaultBreakpoints,
-  optionBreakpoints: Record<string | number | symbol, string> | undefined | null,
+  optionBreakpoints: Record<TRecordKeys, string> | undefined | null,
 ) {
   if (!optionBreakpoints) {
     return defaultBreakpoints
@@ -20,4 +20,25 @@ export function setBreakpoints(
     )
   }
   return optionBreakpoints
+}
+
+export function extendsBreakpoints(
+  defaultBeakpoints: TDefaultBreakpoints,
+  queriesBreakpoints: Partial<Record<TRecordKeys, Record<TRecordKeys, any>>> | undefined | null,
+) {
+  if (!queriesBreakpoints) {
+    return defaultBeakpoints
+  }
+  let currentBreakpoints: Record<string, string> = { ...defaultBeakpoints }
+  let queriesBreakpointsKeys = Object.keys(queriesBreakpoints)
+  queriesBreakpointsKeys.forEach((key) => {
+    currentBreakpoints = { ...queriesBreakpoints[key], ...currentBreakpoints }
+  })
+  let currentBreakpointsKeys = Object.keys(currentBreakpoints)
+  currentBreakpointsKeys.forEach((key) => {
+    if (isCSSUnits(key)) {
+      currentBreakpoints[key] = key
+    }
+  })
+  return currentBreakpoints
 }

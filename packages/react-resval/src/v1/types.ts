@@ -5,6 +5,8 @@
  * Types Utils
  */
 
+export type TRecordKeys = string | number | symbol
+
 export type TPrimitive<T = string> = T & {}
 
 export type TCSSAbsoluteUnits = 'px' | 'cm' | 'mm' | 'Q' | 'in' | 'pc' | 'pt'
