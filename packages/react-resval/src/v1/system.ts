@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-const */
 
 import type { TBreakpointsDefault, TRecordKeys } from './types'

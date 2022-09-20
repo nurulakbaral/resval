@@ -6,8 +6,7 @@ import * as React from 'react'
 import type { TOptions, TPrimitive } from './types'
 import { extendsBreakpoints, setBreakpoints } from './system'
 import { BreakpointsDefault } from './constants'
-
-function useMediaQuery() {}
+import { useInternalMediaQuery } from './hooks'
 
 export function createResponsiveValues<TTypeBreakpointsOption extends Record<string, string>>(
   options: TOptions<TTypeBreakpointsOption>,
@@ -30,6 +29,7 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
     >]
   } {
     let breakpointsArbitrary = extendsBreakpoints(breakpoints, breakpointsQueries)
+    let { breakpointsTrack } = useInternalMediaQuery(breakpointsArbitrary, media)
     return {} as any
   }
 }

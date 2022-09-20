@@ -66,3 +66,9 @@ export type TOptions<T extends Record<string, string>> = {
   breakpoints?: T extends TBreakpointsOption<T> ? T : TBreakpointsOption<T>
   media: TMedia
 }
+
+export type TBreakpointsTrack = {
+  query: string
+  constraintWidth: string
+  status: boolean
+}
