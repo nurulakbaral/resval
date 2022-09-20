@@ -41,7 +41,7 @@ export type TCSSSWidthValues<T extends string> = T extends `${infer Numb extends
   ? `${Numb}${TCSSSWidthValues<TUnit>}`
   : `${TCSSAbsoluteUnits | TCSSRelativeUnits}`
 
-export type TDefaultBreakpoints = {
+export type TBreakpointsDefault = {
   base?: string
   xs?: string
   sm?: string

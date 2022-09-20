@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { setBreakpoints, extendsBreakpoints } from '../../src/v1/system'
-import { DefaultBreakpoints } from '../../src/v1/constants'
+import { BreakpointsDefault } from '../../src/v1/constants'
 
 describe('Check the `setBreakpoints` utility so that it gives the expected output.', () => {
   test('01', () => {
-    expect(setBreakpoints(DefaultBreakpoints, {})).toEqual(DefaultBreakpoints)
+    expect(setBreakpoints(BreakpointsDefault, {})).toEqual(BreakpointsDefault)
     expect(
-      setBreakpoints(DefaultBreakpoints, {
+      setBreakpoints(BreakpointsDefault, {
         smallMobile: '100px',
         mediumMobile: '200px',
         largeMobile: '300px',
@@ -23,7 +23,7 @@ describe('Check the `setBreakpoints` utility so that it gives the expected outpu
 describe('Check the `extendsBreakpoints` utility so that it gives the expected output.', () => {
   test('01', () => {
     expect(
-      extendsBreakpoints(DefaultBreakpoints, {
+      extendsBreakpoints(BreakpointsDefault, {
         fontSize: {
           xs: '12px',
           sm: '14px',
@@ -36,7 +36,7 @@ describe('Check the `extendsBreakpoints` utility so that it gives the expected o
         },
       }),
     ).toEqual({
-      ...DefaultBreakpoints,
+      ...BreakpointsDefault,
       '600px': '600px',
       '900px': '900px',
     })

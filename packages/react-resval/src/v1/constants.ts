@@ -1,6 +1,6 @@
-import type { TDefaultBreakpoints } from './types'
+import type { TBreakpointsDefault } from './types'
 
-export const DefaultBreakpoints: TDefaultBreakpoints = {
+export const BreakpointsDefault: TBreakpointsDefault = {
   base: '0px',
   xs: '320px',
   sm: '576px',

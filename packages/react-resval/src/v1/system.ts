@@ -1,44 +1,44 @@
 /* eslint-disable prefer-const */
 
-import type { TDefaultBreakpoints, TRecordKeys } from './types'
+import type { TBreakpointsDefault, TRecordKeys } from './types'
 import { isArrayOfCSSUnits, isEmptyObject, isObject, isCSSUnits } from './utils'
 
 export function setBreakpoints(
-  defaultBreakpoints: TDefaultBreakpoints,
-  optionBreakpoints: Record<TRecordKeys, string> | undefined | null,
+  breakpointsDefault: TBreakpointsDefault,
+  breakpointsOption: Record<TRecordKeys, string> | undefined | null,
 ) {
-  if (!optionBreakpoints) {
-    return defaultBreakpoints
+  if (!breakpointsOption) {
+    return breakpointsDefault
   }
-  if (isEmptyObject(optionBreakpoints) || !isObject(optionBreakpoints)) {
-    return defaultBreakpoints
+  if (isEmptyObject(breakpointsOption) || !isObject(breakpointsOption)) {
+    return breakpointsDefault
   }
-  let breakpointsValues = Object.values(optionBreakpoints)
+  let breakpointsValues = Object.values(breakpointsOption)
   if (!isArrayOfCSSUnits(breakpointsValues)) {
     throw new TypeError(
       'When you call `createResponsiveValues`, `breakpoints` property must contain CSS Units such as `px`, `rem`, `em`, etc and do not mix up string values and number values. Docs: developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units',
     )
   }
-  return optionBreakpoints
+  return breakpointsOption
 }
 
 export function extendsBreakpoints(
-  defaultBeakpoints: TDefaultBreakpoints,
-  queriesBreakpoints: Partial<Record<TRecordKeys, Record<TRecordKeys, any>>> | undefined | null,
+  breakpointsDefault: TBreakpointsDefault,
+  breakpointsQueries: Partial<Record<TRecordKeys, Record<TRecordKeys, any>>> | undefined | null,
 ) {
-  if (!queriesBreakpoints) {
-    return defaultBeakpoints
+  if (!breakpointsQueries) {
+    return breakpointsDefault
   }
-  let currentBreakpoints: Record<string, string> = { ...defaultBeakpoints }
-  let queriesBreakpointsKeys = Object.keys(queriesBreakpoints)
-  queriesBreakpointsKeys.forEach((key) => {
-    currentBreakpoints = { ...queriesBreakpoints[key], ...currentBreakpoints }
+  let breakpointsCurrent: Record<string, string> = { ...breakpointsDefault }
+  let breakpointsQueriesKeys = Object.keys(breakpointsQueries)
+  breakpointsQueriesKeys.forEach((key) => {
+    breakpointsCurrent = { ...breakpointsQueries[key], ...breakpointsCurrent }
   })
-  let currentBreakpointsKeys = Object.keys(currentBreakpoints)
-  currentBreakpointsKeys.forEach((key) => {
+  let breakpointsCurrentKeys = Object.keys(breakpointsCurrent)
+  breakpointsCurrentKeys.forEach((key) => {
     if (isCSSUnits(key)) {
-      currentBreakpoints[key] = key
+      breakpointsCurrent[key] = key
     }
   })
-  return currentBreakpoints
+  return breakpointsCurrent
 }

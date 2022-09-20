@@ -5,31 +5,31 @@
 import * as React from 'react'
 import type { TOptions, TPrimitive } from './types'
 import { extendsBreakpoints, setBreakpoints } from './system'
-import { DefaultBreakpoints } from './constants'
+import { BreakpointsDefault } from './constants'
 
 function useMediaQuery() {}
 
-export function createResponsiveValues<TTypeOptionBreakpoints extends Record<string, string>>(
-  options: TOptions<TTypeOptionBreakpoints>,
+export function createResponsiveValues<TTypeBreakpointsOption extends Record<string, string>>(
+  options: TOptions<TTypeBreakpointsOption>,
 ) {
-  let { breakpoints: breakpointsOptions, media = 'min' } = options
-  let breakpoints = setBreakpoints(DefaultBreakpoints, breakpointsOptions)
+  let { breakpoints: breakpointsOption, media = 'min' } = options
+  let breakpoints = setBreakpoints(BreakpointsDefault, breakpointsOption)
 
   return function useResponsiveValues<
-    TTypeQueriesBreakpoints extends Record<string, Partial<Record<keyof TTypeOptionBreakpoints, Values>>>,
-    Values extends TPrimitive<string> | TPrimitive<number> | {} | null | undefined,
+    TTypeBreakpointsQueries extends Record<string, Partial<Record<keyof TTypeBreakpointsOption, TTypeValues>>>,
+    TTypeValues extends TPrimitive<string> | TPrimitive<number> | {} | null | undefined,
   >(
-    queriesBreakpoints: TTypeQueriesBreakpoints,
+    breakpointsQueries: TTypeBreakpointsQueries,
   ): {
     /**
      * TODO! Write docs for this types, what is happening here?
      */
-    [K in keyof TTypeQueriesBreakpoints]: TTypeQueriesBreakpoints[K][Exclude<
-      keyof TTypeOptionBreakpoints,
-      Exclude<keyof TTypeOptionBreakpoints, keyof TTypeQueriesBreakpoints[K]>
+    [K in keyof TTypeBreakpointsQueries]: TTypeBreakpointsQueries[K][Exclude<
+      keyof TTypeBreakpointsOption,
+      Exclude<keyof TTypeBreakpointsOption, keyof TTypeBreakpointsQueries[K]>
     >]
   } {
-    let arbitraryBreakpoints = extendsBreakpoints(breakpoints, queriesBreakpoints)
+    let breakpointsArbitrary = extendsBreakpoints(breakpoints, breakpointsQueries)
     return {} as any
   }
 }
