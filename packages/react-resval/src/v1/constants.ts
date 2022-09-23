@@ -31,3 +31,6 @@ export const BreakpointsDefault: TBreakpointsDefault = {
   lg: '1080px',
   xl: '1280px',
 }
+
+export const CSSUnitsRegex =
+  /^[0-9.]+(cm|mm|Q|in|pc|pt|px|em|ex|ch|rem|lh|rlh|vw|vh|vmin|vmax|vb|vi|svw|svh|lvw|lvh|dvw|dvh)$/

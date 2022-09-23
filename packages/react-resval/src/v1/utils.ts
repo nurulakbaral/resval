@@ -1,19 +1,31 @@
+/* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import type { TRecordKeys } from './types'
+import { CSSUnitsRegex } from './constants'
 
-export function isEmptyObject<TTypeObject extends Record<string | number | symbol, any>>(obj: TTypeObject) {
+export function isEmptyObject(obj: Record<TRecordKeys, any>) {
   return Object.keys(obj).length === 0 && obj.constructor === Object
 }
 
-export function isObject<TTypeObject extends Record<string | number | symbol, any>>(obj: TTypeObject) {
-  return obj.constructor === Object
+export function isObject(obj: Record<TRecordKeys, any>) {
+  return obj?.constructor === Object
 }
 
 export function isArrayOfCSSUnits(arr: any[]): boolean {
-  const CSSUnits = /^[0-9.]+(cm|mm|Q|in|pc|pt|px|em|ex|ch|rem|lh|rlh|vw|vh|vmin|vmax|vb|vi|svw|svh|lvw|lvh|dvw|dvh)$/
-  return arr.every((value) => typeof value === 'string' && CSSUnits.test(value))
+  return arr.every((value) => typeof value === 'string' && CSSUnitsRegex.test(value))
 }
 
 export function isCSSUnits(value: string): boolean {
-  const CSSUnits = /^[0-9.]+(cm|mm|Q|in|pc|pt|px|em|ex|ch|rem|lh|rlh|vw|vh|vmin|vmax|vb|vi|svw|svh|lvw|lvh|dvw|dvh)$/
-  return typeof value === 'string' && CSSUnits.test(value)
+  return typeof value === 'string' && CSSUnitsRegex.test(value)
+}
+
+export function isBreakpointsHaveDiffCSSUnits(breakpointsValues: string[]): boolean {
+  let listOfCSSUnit: string[] = []
+  for (let value of breakpointsValues) {
+    let val = value.match(/[a-zA-Z]+/g)?.[0] ?? ''
+    if (!listOfCSSUnit.includes(val)) {
+      listOfCSSUnit.push(val)
+    }
+  }
+  return listOfCSSUnit.length > 1
 }

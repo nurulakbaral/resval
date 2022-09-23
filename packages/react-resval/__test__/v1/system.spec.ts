@@ -36,6 +36,17 @@ describe('setBreakpoints()', () => {
         largeMobile: `300${unit}`,
       })
     })
+    expect(
+      setBreakpoints(BreakpointsDefault, {
+        base: `100px`,
+        xs: `200px`,
+        sm: `300px`,
+      }),
+    ).toEqual({
+      base: `100px`,
+      xs: `200px`,
+      sm: `300px`,
+    })
   })
 
   /**
@@ -62,6 +73,21 @@ describe('setBreakpoints()', () => {
     ).toThrow()
     expect(() =>
       setBreakpoints(BreakpointsDefault, {
+        smallMobile: '100pX',
+      }),
+    ).toThrow()
+    expect(() =>
+      setBreakpoints(BreakpointsDefault, {
+        smallMobile: '100Px',
+      }),
+    ).toThrow()
+    expect(() =>
+      setBreakpoints(BreakpointsDefault, {
+        smallMobile: '100reM',
+      }),
+    ).toThrow()
+    expect(() =>
+      setBreakpoints(BreakpointsDefault, {
         mediumMobile: '1s0px',
       }),
     ).toThrow()
@@ -76,6 +102,7 @@ describe('setBreakpoints()', () => {
       }),
     ).toThrow()
   })
+
   it('should throw an error when passing custom breakpoints with non-string value', () => {
     expect(() =>
       setBreakpoints(BreakpointsDefault, {
@@ -100,6 +127,23 @@ describe('setBreakpoints()', () => {
     expect(() =>
       setBreakpoints(BreakpointsDefault, {
         smallMobile: [],
+      } as any),
+    ).toThrow()
+  })
+
+  it('should throw an error when passing custom breakpoints with different css units in the same time', () => {
+    expect(() =>
+      setBreakpoints(BreakpointsDefault, {
+        base: '100px',
+        xs: '200px',
+        sm: '300rem',
+      } as any),
+    ).toThrow()
+    expect(() =>
+      setBreakpoints(BreakpointsDefault, {
+        base: '100rem',
+        xs: '200rem',
+        sm: '300px',
       } as any),
     ).toThrow()
   })
