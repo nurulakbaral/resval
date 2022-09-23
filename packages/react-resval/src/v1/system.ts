@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-const */
 
-import type { TBreakpointsDefault, TRecordKeys } from './types'
+import type { TBreakpointsDefault, TRecordKeys, TBreakpointsTrack } from './types'
 import { isArrayOfCSSUnits, isEmptyObject, isObject, isCSSUnits, isBreakpointsHaveDiffCSSUnits } from './utils'
 
 export function setBreakpoints(
@@ -59,4 +59,15 @@ export function extendsBreakpoints(
     }
   })
   return breakpointsCurrent
+}
+
+export function sortBreakpointsTrack(breakpointsTrack: TBreakpointsTrack[]): TBreakpointsTrack[] {
+  /**
+   * Sort `breakpointsTrack` by `constraintWidth` property.
+   */
+  return breakpointsTrack.sort((breakpointsTrackA, breakpointsTrackB) => {
+    let constraintWidthA = Number(breakpointsTrackA.constraintWidth.replace(/[^0-9.]/g, ''))
+    let constraintWidthB = Number(breakpointsTrackB.constraintWidth.replace(/[^0-9.]/g, ''))
+    return constraintWidthA - constraintWidthB
+  })
 }

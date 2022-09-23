@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-empty-function */
 
 import * as React from 'react'
 import type { TOptions, TPrimitive } from './types'
-import { extendsBreakpoints, setBreakpoints } from './system'
+import { extendsBreakpoints, setBreakpoints, sortBreakpointsTrack } from './system'
 import { BreakpointsDefault } from './constants'
 import { useInternalMediaQuery } from './hooks'
 
@@ -34,10 +35,15 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
      */
     let breakpointsArbitrary = extendsBreakpoints(breakpoints, breakpointsQueries)
     /**
-     * `breakpointsArbitrary` variable was guaranteed to be sanitized.
-     * `breakpointsArbitrary` will return an object with keys and appropriate value (CSS Units Rule).
+     * `breakpointsArbitrary` and `breakpointsTrack` variable was guaranteed to be sanitized.
+     * `breakpointsArbitrary` and `breakpointsTrack` will always return an object whose `constraintWidth` property has the same css unit value.
      */
     let { breakpointsTrack } = useInternalMediaQuery(breakpointsArbitrary, media)
+    // Notes: Prerendering from SSR
+    if (!breakpointsTrack) {
+      return undefined as any
+    }
+    let sortedBreakpointsTrack = sortBreakpointsTrack(breakpointsTrack)
     return {} as any
   }
 }
