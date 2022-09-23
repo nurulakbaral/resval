@@ -45,6 +45,9 @@ export function extendsBreakpoints(
   })
   let breakpointsCurrentKeys = Object.keys(breakpointsCurrent)
   breakpointsCurrentKeys.forEach((key) => {
+    /**
+     * `isCSSUnits()` is a function just only for `breakpointsQueries`.
+     */
     if (isCSSUnits(key)) {
       breakpointsCurrent[key] = key
     } else {

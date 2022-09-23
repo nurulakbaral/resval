@@ -28,7 +28,15 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
       Exclude<keyof TTypeBreakpointsOption, keyof TTypeBreakpointsQueries[K]>
     >]
   } {
+    /**
+     * `breakpoints` variable was guaranteed to be sanitized.
+     * `breakpoints` will return an object with keys and appropriate value (CSS Units Rule).
+     */
     let breakpointsArbitrary = extendsBreakpoints(breakpoints, breakpointsQueries)
+    /**
+     * `breakpointsArbitrary` variable was guaranteed to be sanitized.
+     * `breakpointsArbitrary` will return an object with keys and appropriate value (CSS Units Rule).
+     */
     let { breakpointsTrack } = useInternalMediaQuery(breakpointsArbitrary, media)
     return {} as any
   }
