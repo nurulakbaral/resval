@@ -109,3 +109,31 @@ export function trackBreakpoints(
     breakpointsClosest,
   }
 }
+
+export function setCurrentValue(
+  breakpointsQueries: Record<TRecordKeys, Record<TRecordKeys, any>>,
+  breakpointsCurrent: TBreakpointsTrack,
+  breakpointsClosest: string[],
+) {
+  let resultValue: Record<TRecordKeys, any> = {}
+  const currentQuery = breakpointsCurrent.query
+  const breakpointsQueriesKeys = Object.keys(breakpointsQueries)
+  // Notes: `param` here is like `fontSize`, `color`, `isMobile`, etc.
+  breakpointsQueriesKeys.forEach((param) => {
+    const isQueryDefined = Object.keys(breakpointsQueries[param]).includes(currentQuery)
+    const dynamicCurrentValue = breakpointsQueries[param][currentQuery]
+    if (dynamicCurrentValue !== undefined || isQueryDefined) {
+      resultValue[param] = dynamicCurrentValue
+    } else {
+      for (const closestQuery of breakpointsClosest) {
+        const dynamicClosestValue = breakpointsQueries[param][closestQuery]
+        if (dynamicClosestValue !== undefined) {
+          resultValue[param] = dynamicClosestValue
+          break
+        }
+      }
+    }
+  })
+
+  return resultValue
+}

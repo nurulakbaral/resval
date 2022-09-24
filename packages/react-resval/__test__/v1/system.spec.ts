@@ -1,7 +1,13 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { setBreakpoints, extendsBreakpoints, sortBreakpointsTrack, trackBreakpoints } from '../../src/v1/system'
+import {
+  setBreakpoints,
+  extendsBreakpoints,
+  sortBreakpointsTrack,
+  trackBreakpoints,
+  setCurrentValue,
+} from '../../src/v1/system'
 import { BreakpointsDefault, CSSUnits } from '../../src/v1/constants'
 import { TBreakpointsTrack } from '../../src/v1/types'
 
@@ -478,6 +484,150 @@ describe('trackBreakpoints()', () => {
         breakpointsCurrent: { query: `600${cssUnit}`, constraintWidth: `600${cssUnit}`, status: true },
         breakpointsClosest: ['xl', `lg`, `900${cssUnit}`, 'md'],
       })
+    })
+  })
+})
+describe('setCurrentValue()', () => {
+  const breakpointsQueries = {
+    fontSize: {
+      base: '15px',
+      md: '20px',
+    },
+  }
+
+  /**
+   * Default breakpoints
+   */
+
+  it('default breakpoints, currentQuery, and min', () => {
+    const breakpointsCurrent = { query: `md`, constraintWidth: `768px`, status: true }
+    const breakpointsClosest = ['sm', 'xs', 'base']
+    expect(setCurrentValue(breakpointsQueries, breakpointsCurrent, breakpointsClosest)).toEqual({
+      fontSize: '20px',
+    })
+  })
+
+  it('default breakpoints, currentQuery, and max', () => {
+    const breakpointsCurrent = { query: `md`, constraintWidth: `768px`, status: true }
+    const breakpointsClosest = ['lg', 'xl']
+    expect(
+      setCurrentValue(
+        { ...breakpointsQueries, color: { base: 'red', md: 'green' } },
+        breakpointsCurrent,
+        breakpointsClosest,
+      ),
+    ).toEqual({
+      fontSize: '20px',
+      color: 'green',
+    })
+  })
+
+  it('default breakpoints, closestQuery, and min', () => {
+    const breakpointsCurrent = { query: `md`, constraintWidth: `768px`, status: true }
+    const breakpointsClosest = ['sm', 'xs', 'base']
+    expect(
+      setCurrentValue(
+        { ...breakpointsQueries, isMobile: { base: 'Yes', lg: 'No' } },
+        breakpointsCurrent,
+        breakpointsClosest,
+      ),
+    ).toEqual({
+      fontSize: '20px',
+      isMobile: 'Yes',
+    })
+  })
+
+  it('default breakpoints, closestQuery, and max', () => {
+    const breakpointsCurrent = { query: `sm`, constraintWidth: `768px`, status: true }
+    const breakpointsClosest = ['md', 'lg', 'xl']
+    expect(
+      setCurrentValue(
+        { ...breakpointsQueries, color: { base: 'red', lg: 'green' } },
+        breakpointsCurrent,
+        breakpointsClosest,
+      ),
+    ).toEqual({
+      fontSize: '20px',
+      color: 'green',
+    })
+  })
+
+  /**
+   * Custom breakpoints
+   */
+
+  it('custom breakpoints, currentQuery & closestQuery, and min', () => {
+    const breakpointsCurrent = { query: `900px`, constraintWidth: `900px`, status: true }
+    const breakpointsClosest = ['md', '600px', 'sm', 'xs', 'base']
+    expect(
+      setCurrentValue(
+        { ...breakpointsQueries, color: { base: 'green', '600px': 'red', '900px': 'blue' } },
+        breakpointsCurrent,
+        breakpointsClosest,
+      ),
+    ).toEqual({
+      fontSize: '20px',
+      color: 'blue',
+    })
+  })
+
+  it('custom breakpoints, currentQuery & closestQuery, and max', () => {
+    const breakpointsCurrent = { query: `600px`, constraintWidth: `600px`, status: true }
+    const breakpointsClosest = ['md', '900px', 'lg', 'xl']
+    expect(
+      setCurrentValue(
+        { ...breakpointsQueries, color: { base: 'green', '900px': 'blue' } },
+        breakpointsCurrent,
+        breakpointsClosest,
+      ),
+    ).toEqual({
+      fontSize: '20px',
+      color: 'blue',
+    })
+  })
+
+  /**
+   * Test for falsy values
+   */
+
+  it('default breakpoints, currentQuery & closestQuery, min, and falsy values', () => {
+    const breakpointsCurrent = { query: `900px`, constraintWidth: `900px`, status: true }
+    const breakpointsClosest = ['md', '600px', 'sm', 'xs', 'base']
+    expect(
+      setCurrentValue(
+        {
+          nullValue: {
+            base: undefined,
+            md: null,
+          },
+          undefinedValue: {
+            base: undefined,
+            md: null,
+            '900px': undefined,
+          },
+          falseValue: {
+            base: true,
+            md: false,
+          },
+          zeroNumberValue: {
+            base: undefined,
+            md: null,
+            '900px': 0,
+          },
+          emptyStringValue: {
+            base: undefined,
+            md: '',
+          },
+        },
+        breakpointsCurrent,
+        breakpointsClosest,
+      ),
+    ).toEqual({
+      nullValue: null,
+      undefinedValue: undefined,
+      falseValue: false,
+      zeroNumberValue: 0,
+      emptyStringValue: '',
     })
   })
 })

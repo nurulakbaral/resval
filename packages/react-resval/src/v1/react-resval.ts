@@ -5,7 +5,7 @@
 
 import * as React from 'react'
 import type { TOptions, TPrimitive } from './types'
-import { extendsBreakpoints, setBreakpoints, sortBreakpointsTrack, trackBreakpoints } from './system'
+import { extendsBreakpoints, setBreakpoints, sortBreakpointsTrack, trackBreakpoints, setCurrentValue } from './system'
 import { BreakpointsDefault } from './constants'
 import { useInternalMediaQuery } from './hooks'
 
@@ -16,7 +16,10 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
   let breakpoints = setBreakpoints(BreakpointsDefault, breakpointsOption)
 
   return function useResponsiveValues<
-    TTypeBreakpointsQueries extends Record<string, Partial<Record<keyof TTypeBreakpointsOption, TTypeValues>>>,
+    TTypeBreakpointsQueries extends Record<
+      string,
+      Partial<Record<keyof TTypeBreakpointsOption | TPrimitive<string>, TTypeValues>>
+    >,
     TTypeValues extends TPrimitive<string> | TPrimitive<number> | {} | null | undefined,
   >(
     breakpointsQueries: TTypeBreakpointsQueries,
@@ -24,9 +27,9 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
     /**
      * TODO! Write docs for this types, what is happening here?
      */
-    [K in keyof TTypeBreakpointsQueries]: TTypeBreakpointsQueries[K][Exclude<
-      keyof TTypeBreakpointsOption,
-      Exclude<keyof TTypeBreakpointsOption, keyof TTypeBreakpointsQueries[K]>
+    [Param in keyof TTypeBreakpointsQueries]: TTypeBreakpointsQueries[Param][Exclude<
+      keyof TTypeBreakpointsOption | keyof TTypeBreakpointsQueries[Param],
+      Exclude<keyof TTypeBreakpointsOption | keyof TTypeBreakpointsQueries[Param], keyof TTypeBreakpointsQueries[Param]>
     >]
   } {
     /**
@@ -45,7 +48,9 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
     }
     let sortedBreakpointsTrack = sortBreakpointsTrack(breakpointsTrack)
     let { breakpointsCurrent, breakpointsClosest } = trackBreakpoints(sortedBreakpointsTrack, media)
-    return {} as any
+    let currentValue = setCurrentValue(breakpointsQueries, breakpointsCurrent, breakpointsClosest)
+
+    return currentValue as any
   }
 }
 
@@ -71,10 +76,15 @@ const useVx = createResponsiveValues({
 })
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
-const { fontSize } = useVx({
+const { fontSize, color } = useVx({
   fontSize: {
     base: '12px',
-    xs: '24px',
+    xl: '24px',
+  },
+  color: {
+    base: 'red',
+    '600px': 'blue',
+    xl: 'green',
   },
 })
 
