@@ -3,7 +3,6 @@
 /* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-empty-function */
 
-import * as React from 'react'
 import type { TOptions, TPrimitive } from './types'
 import { extendsBreakpoints, setBreakpoints, sortBreakpointsTrack, trackBreakpoints, setCurrentValue } from './system'
 import { BreakpointsDefault } from './constants'
@@ -95,4 +94,7 @@ const { fontSize, color } = useVx({
   },
 })
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const fontSizeProp: '12px' | '24px' | undefined | null = fontSize
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const colorProp: 'red' | 'green' | 'blue' = color
