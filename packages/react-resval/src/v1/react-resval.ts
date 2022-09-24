@@ -25,12 +25,19 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
     breakpointsQueries: TTypeBreakpointsQueries,
   ): {
     /**
-     * TODO! Write docs for this types, what is happening here?
+     * Let's say TTypeBreakpointsQueries is :
+     * {
+     *  fontSize: { base: '12px', xl: '24px' },
+     *  color: { base: 'red', '600px': 'blue', xl: 'green' }
+     * }
+     *
+     * So,
+     * keyof TTypeBreakpointsQueries is 'fontSize' OR 'color' (Param)
+     * keyof TTypeBreakpointsQueries[Param] is 'base' | 'xl' OR 'base' | '600px' | 'xl'
+     *
      */
-    [Param in keyof TTypeBreakpointsQueries]: TTypeBreakpointsQueries[Param][Exclude<
-      keyof TTypeBreakpointsOption | keyof TTypeBreakpointsQueries[Param],
-      Exclude<keyof TTypeBreakpointsOption | keyof TTypeBreakpointsQueries[Param], keyof TTypeBreakpointsQueries[Param]>
-    >]
+
+    [Param in keyof TTypeBreakpointsQueries]: TTypeBreakpointsQueries[Param][keyof TTypeBreakpointsQueries[Param]]
   } {
     /**
      * `breakpoints` variable was guaranteed to be sanitized.
