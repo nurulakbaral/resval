@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { setBreakpoints, extendsBreakpoints, sortBreakpointsTrack } from '../../src/v1/system'
+import { setBreakpoints, extendsBreakpoints, sortBreakpointsTrack, trackBreakpoints } from '../../src/v1/system'
 import { BreakpointsDefault, CSSUnits } from '../../src/v1/constants'
 import { TBreakpointsTrack } from '../../src/v1/types'
 
@@ -388,6 +388,96 @@ describe('sortBreakpointsTrack()', () => {
         `600${cssUnit}`,
         `900${cssUnit}`,
       ])
+    })
+  })
+})
+
+describe('trackBreakpoints()', () => {
+  it('media: min, viewport: 800px (for example), and default breakpoints', () => {
+    const sortedBreakpointsTrack = (cssUnit: string) => [
+      { query: `base`, constraintWidth: `0${cssUnit}`, status: true },
+      { query: `xs`, constraintWidth: `320${cssUnit}`, status: true },
+      { query: `sm`, constraintWidth: `576${cssUnit}`, status: true },
+      { query: `md`, constraintWidth: `768${cssUnit}`, status: true },
+      { query: `lg`, constraintWidth: `1080${cssUnit}`, status: false },
+      { query: `xl`, constraintWidth: `1280${cssUnit}`, status: false },
+    ]
+
+    CSSUnits.forEach((cssUnit) => {
+      expect(trackBreakpoints(sortedBreakpointsTrack(cssUnit), 'min')).toEqual({
+        breakpointsCurrent: { query: `md`, constraintWidth: `768${cssUnit}`, status: true },
+        breakpointsClosest: ['sm', 'xs', 'base'],
+      })
+      expect(trackBreakpoints(sortedBreakpointsTrack(cssUnit), 'min')).not.toEqual({
+        breakpointsCurrent: { query: `md`, constraintWidth: `768${cssUnit}`, status: true },
+        breakpointsClosest: ['base', 'xs', 'sm'],
+      })
+    })
+  })
+  it('media: max, viewport: 600px (for example), and default breakpoints', () => {
+    const sortedBreakpointsTrack = (cssUnit: string) => [
+      { query: `base`, constraintWidth: `0${cssUnit}`, status: false },
+      { query: `xs`, constraintWidth: `320${cssUnit}`, status: false },
+      { query: `sm`, constraintWidth: `576${cssUnit}`, status: false },
+      { query: `md`, constraintWidth: `768${cssUnit}`, status: true },
+      { query: `lg`, constraintWidth: `1080${cssUnit}`, status: true },
+      { query: `xl`, constraintWidth: `1280${cssUnit}`, status: true },
+    ]
+    CSSUnits.forEach((cssUnit) => {
+      expect(trackBreakpoints(sortedBreakpointsTrack(cssUnit), 'max')).toEqual({
+        breakpointsCurrent: { query: `md`, constraintWidth: `768${cssUnit}`, status: true },
+        breakpointsClosest: ['lg', 'xl'],
+      })
+      expect(trackBreakpoints(sortedBreakpointsTrack(cssUnit), 'max')).not.toEqual({
+        breakpointsCurrent: { query: `md`, constraintWidth: `768${cssUnit}`, status: true },
+        breakpointsClosest: ['xl', 'lg'],
+      })
+    })
+  })
+  it('media: min, viewport: 1000px (for example), and custom breakpoints', () => {
+    const sortedBreakpointsTrack = (cssUnit: string) => [
+      { query: `base`, constraintWidth: `0${cssUnit}`, status: true },
+      { query: `xs`, constraintWidth: `320${cssUnit}`, status: true },
+      { query: `sm`, constraintWidth: `576${cssUnit}`, status: true },
+      { query: `600${cssUnit}`, constraintWidth: `600${cssUnit}`, status: true },
+      { query: `md`, constraintWidth: `768${cssUnit}`, status: true },
+      { query: `900${cssUnit}`, constraintWidth: `900${cssUnit}`, status: true },
+      { query: `lg`, constraintWidth: `1080${cssUnit}`, status: false },
+      { query: `xl`, constraintWidth: `1280${cssUnit}`, status: false },
+    ]
+
+    CSSUnits.forEach((cssUnit) => {
+      expect(trackBreakpoints(sortedBreakpointsTrack(cssUnit), 'min')).toEqual({
+        breakpointsCurrent: { query: `900${cssUnit}`, constraintWidth: `900${cssUnit}`, status: true },
+        breakpointsClosest: ['md', `600${cssUnit}`, 'sm', 'xs', 'base'],
+      })
+      expect(trackBreakpoints(sortedBreakpointsTrack(cssUnit), 'min')).not.toEqual({
+        breakpointsCurrent: { query: `900`, constraintWidth: `900${cssUnit}`, status: true },
+        breakpointsClosest: ['base', 'xs', 'sm', `600${cssUnit}`, 'md'],
+      })
+    })
+  })
+  it('media: max, viewport: 500px (for example), and custom breakpoints', () => {
+    const sortedBreakpointsTrack = (cssUnit: string) => [
+      { query: `base`, constraintWidth: `0${cssUnit}`, status: false },
+      { query: `xs`, constraintWidth: `320${cssUnit}`, status: false },
+      { query: `sm`, constraintWidth: `576${cssUnit}`, status: false },
+      { query: `600${cssUnit}`, constraintWidth: `600${cssUnit}`, status: true },
+      { query: `md`, constraintWidth: `768${cssUnit}`, status: true },
+      { query: `900${cssUnit}`, constraintWidth: `900${cssUnit}`, status: true },
+      { query: `lg`, constraintWidth: `1080${cssUnit}`, status: true },
+      { query: `xl`, constraintWidth: `1280${cssUnit}`, status: true },
+    ]
+
+    CSSUnits.forEach((cssUnit) => {
+      expect(trackBreakpoints(sortedBreakpointsTrack(cssUnit), 'max')).toEqual({
+        breakpointsCurrent: { query: `600${cssUnit}`, constraintWidth: `600${cssUnit}`, status: true },
+        breakpointsClosest: ['md', `900${cssUnit}`, 'lg', 'xl'],
+      })
+      expect(trackBreakpoints(sortedBreakpointsTrack(cssUnit), 'max')).not.toEqual({
+        breakpointsCurrent: { query: `600${cssUnit}`, constraintWidth: `600${cssUnit}`, status: true },
+        breakpointsClosest: ['xl', `lg`, `900${cssUnit}`, 'md'],
+      })
     })
   })
 })

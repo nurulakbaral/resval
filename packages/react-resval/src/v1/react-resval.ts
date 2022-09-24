@@ -5,7 +5,7 @@
 
 import * as React from 'react'
 import type { TOptions, TPrimitive } from './types'
-import { extendsBreakpoints, setBreakpoints, sortBreakpointsTrack } from './system'
+import { extendsBreakpoints, setBreakpoints, sortBreakpointsTrack, trackBreakpoints } from './system'
 import { BreakpointsDefault } from './constants'
 import { useInternalMediaQuery } from './hooks'
 
@@ -44,6 +44,7 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
       return undefined as any
     }
     let sortedBreakpointsTrack = sortBreakpointsTrack(breakpointsTrack)
+    let { breakpointsCurrent, breakpointsClosest } = trackBreakpoints(sortedBreakpointsTrack, media)
     return {} as any
   }
 }

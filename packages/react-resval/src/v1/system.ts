@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-const */
 
-import type { TBreakpointsDefault, TRecordKeys, TBreakpointsTrack } from './types'
+import type { TBreakpointsDefault, TRecordKeys, TBreakpointsTrack, TMedia } from './types'
 import { isArrayOfCSSUnits, isEmptyObject, isObject, isCSSUnits, isBreakpointsHaveDiffCSSUnits } from './utils'
 
 export function setBreakpoints(
@@ -70,4 +70,42 @@ export function sortBreakpointsTrack(breakpointsTrack: TBreakpointsTrack[]): TBr
     let constraintWidthB = Number(breakpointsTrackB.constraintWidth.replace(/[^0-9.]/g, ''))
     return constraintWidthA - constraintWidthB
   })
+}
+
+export function trackBreakpoints(
+  breakpointsTrack: TBreakpointsTrack[],
+  media: TMedia,
+): {
+  breakpointsCurrent: TBreakpointsTrack
+  breakpointsClosest: string[]
+} {
+  let isCurrentBreakpointsFound = false
+  let breakpointsCurrent: TBreakpointsTrack = { query: '', constraintWidth: '', status: false }
+  let breakpointsClosest: string[] = []
+  let idx = media === 'min' ? breakpointsTrack.length - 1 : 0
+
+  /**
+   * @description Track the breakpoints and return the current breakpoints.
+   */
+
+  for (let i = idx; media === 'min' ? i >= 0 : i < breakpointsTrack.length; media === 'min' ? i-- : i++) {
+    if (breakpointsTrack[i].status && isCurrentBreakpointsFound) {
+      /**
+       * If media is min, `breakpointsClosest` then the order will be descending.
+       * Example: ['600px', '500px', '400px'] -> ['md', 'sm', 'xs']
+       * If media is max, `breakpointsClosest` then the order will be ascending.
+       * Example: ['400px', '500px', '600px'] -> ['xs', 'sm', 'md']
+       */
+      breakpointsClosest.push(breakpointsTrack[i].query)
+    }
+    if (breakpointsTrack[i].status && !isCurrentBreakpointsFound) {
+      breakpointsCurrent = { ...breakpointsTrack[i] }
+      isCurrentBreakpointsFound = true
+    }
+  }
+
+  return {
+    breakpointsCurrent,
+    breakpointsClosest,
+  }
 }
