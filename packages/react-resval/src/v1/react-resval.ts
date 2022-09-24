@@ -20,10 +20,9 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
       Partial<Record<keyof TTypeBreakpointsOption | TPrimitive<string>, TTypeValues>>
     >,
     TTypeValues extends TPrimitive<string> | TPrimitive<number> | {} | null | undefined,
-  >(
-    breakpointsQueries: TTypeBreakpointsQueries,
-  ): {
     /**
+     * TTypeReturnBreakpointsQueries
+     *
      * Let's say TTypeBreakpointsQueries is :
      * {
      *  fontSize: { base: '12px', xl: '24px' },
@@ -35,9 +34,10 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
      * `keyof TTypeBreakpointsQueries[Param]` is 'base' | 'xl' OR 'base' | '600px' | 'xl'
      *
      */
-
-    [Param in keyof TTypeBreakpointsQueries]: TTypeBreakpointsQueries[Param][keyof TTypeBreakpointsQueries[Param]]
-  } {
+    TTypeReturnBreakpointsQueries = {
+      [Param in keyof TTypeBreakpointsQueries]: TTypeBreakpointsQueries[Param][keyof TTypeBreakpointsQueries[Param]]
+    },
+  >(breakpointsQueries: TTypeBreakpointsQueries): TTypeReturnBreakpointsQueries {
     /**
      * `breakpoints` variable was guaranteed to be sanitized.
      * `breakpoints` will return an object with keys and appropriate value (CSS Units Rule).
@@ -62,9 +62,13 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
 
     let sortedBreakpointsTrack = sortBreakpointsTrack(breakpointsTrack)
     let { breakpointsCurrent, breakpointsClosest } = trackBreakpoints(sortedBreakpointsTrack, media)
-    let currentValue = setCurrentValue(breakpointsQueries, breakpointsCurrent, breakpointsClosest)
+    let currentValue = setCurrentValue(
+      breakpointsQueries,
+      breakpointsCurrent,
+      breakpointsClosest,
+    ) as TTypeReturnBreakpointsQueries
 
-    return currentValue as any
+    return currentValue
   }
 }
 
