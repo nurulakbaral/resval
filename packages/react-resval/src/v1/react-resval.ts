@@ -3,7 +3,7 @@
 /* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-empty-function */
 
-import type { TOptions, TPrimitive } from './types'
+import type { TOptions, TPrimitive, TRecordKeys } from './types'
 import { extendsBreakpoints, setBreakpoints, sortBreakpointsTrack, trackBreakpoints, setCurrentValue } from './system'
 import { BreakpointsDefault } from './constants'
 import { useInternalMediaQuery } from './hooks'
@@ -16,7 +16,7 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
 
   return function useResponsiveValues<
     TTypeBreakpointsQueries extends Record<
-      string,
+      TRecordKeys,
       Partial<Record<keyof TTypeBreakpointsOption | TPrimitive<string>, TTypeValues>>
     >,
     TTypeValues extends TPrimitive<string> | TPrimitive<number> | {} | null | undefined,
@@ -31,8 +31,8 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
      * }
      *
      * So,
-     * keyof TTypeBreakpointsQueries is 'fontSize' OR 'color' (Param)
-     * keyof TTypeBreakpointsQueries[Param] is 'base' | 'xl' OR 'base' | '600px' | 'xl'
+     * `keyof TTypeBreakpointsQueries` is 'fontSize' OR 'color' (Param)
+     * `keyof TTypeBreakpointsQueries[Param]` is 'base' | 'xl' OR 'base' | '600px' | 'xl'
      *
      */
 
@@ -42,16 +42,24 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
      * `breakpoints` variable was guaranteed to be sanitized.
      * `breakpoints` will return an object with keys and appropriate value (CSS Units Rule).
      */
+
     let breakpointsArbitrary = extendsBreakpoints(breakpoints, breakpointsQueries)
+
     /**
      * `breakpointsArbitrary` and `breakpointsTrack` variable was guaranteed to be sanitized.
      * `breakpointsArbitrary` and `breakpointsTrack` will always return an object whose `constraintWidth` property has the same css unit value.
      */
+
     let { breakpointsTrack } = useInternalMediaQuery(breakpointsArbitrary, media)
-    // Notes: Prerendering from SSR
+
+    /**
+     * Prerendering from SSR
+     */
+
     if (!breakpointsTrack) {
       return undefined as any
     }
+
     let sortedBreakpointsTrack = sortBreakpointsTrack(breakpointsTrack)
     let { breakpointsCurrent, breakpointsClosest } = trackBreakpoints(sortedBreakpointsTrack, media)
     let currentValue = setCurrentValue(breakpointsQueries, breakpointsCurrent, breakpointsClosest)
