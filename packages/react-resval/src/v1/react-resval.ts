@@ -3,7 +3,7 @@
 /* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-empty-function */
 
-import type { TOptions, TPrimitive, TRecordKeys } from './types'
+import type { TOptions, TRecordKeys } from './types'
 import { extendsBreakpoints, setBreakpoints, sortBreakpointsTrack, trackBreakpoints, setCurrentValue } from './system'
 import { BreakpointsDefault } from './constants'
 import { useInternalMediaQuery } from './hooks'
@@ -15,11 +15,7 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
   let breakpoints = setBreakpoints(BreakpointsDefault, breakpointsOption)
 
   return function useResponsiveValues<
-    TTypeBreakpointsQueries extends Record<
-      TRecordKeys,
-      Partial<Record<keyof TTypeBreakpointsOption | TPrimitive<string>, TTypeValues>>
-    >,
-    TTypeValues extends TPrimitive<string> | TPrimitive<number> | {} | null | undefined,
+    TTypeBreakpointsQueries extends Record<TRecordKeys, Partial<Record<keyof TTypeBreakpointsOption, any>>>,
     /**
      * TTypeReturnBreakpointsQueries
      *
@@ -34,6 +30,7 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
      * `keyof TTypeBreakpointsQueries[Param]` is 'base' | 'xl' OR 'base' | '600px' | 'xl'
      *
      */
+
     TTypeReturnBreakpointsQueries = {
       [Param in keyof TTypeBreakpointsQueries]: TTypeBreakpointsQueries[Param][keyof TTypeBreakpointsQueries[Param]]
     },
@@ -93,18 +90,20 @@ const useVx = createResponsiveValues({
   media: 'min',
 })
 
-// eslint-disable-next-line react-hooks/rules-of-hooks
-const { fontSize, color } = useVx({
+const utilityValues = {
   fontSize: {
     base: '12px',
     xl: '24px',
-  },
+  } as const,
   color: {
     base: 'red',
     '600px': 'blue',
     xl: 'green',
-  },
-})
+  } as const,
+}
+
+// eslint-disable-next-line react-hooks/rules-of-hooks
+const { fontSize, color } = useVx(utilityValues)
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const fontSizeProp: '12px' | '24px' | undefined | null = fontSize
