@@ -7,9 +7,9 @@ import {
   sortBreakpointsTrack,
   trackBreakpoints,
   setCurrentValue,
-} from '../../src/v1/system'
-import { BreakpointsDefault, CSSUnits } from '../../src/v1/constants'
-import { TBreakpointsTrack } from '../../src/v1/types'
+} from '../../src/v1.0.0/system'
+import { BreakpointsDefault, CSSUnits } from '../../src/v1.0.0/constants'
+import { TBreakpointsTrack } from '../../src/v1.0.0/types'
 
 describe('setBreakpoints()', () => {
   /**
