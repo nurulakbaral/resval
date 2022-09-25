@@ -8,7 +8,7 @@ export function useInternalMediaQuery<TTypeBreakpointsOption extends Record<stri
   media: TMedia,
 ) {
   // Notes: Get initial breakpoints
-  let [matches, setMatches] = React.useState<Array<TBreakpointsTrack> | false | undefined>(undefined)
+  let [matches, setMatches] = React.useState<Array<TBreakpointsTrack> | undefined>(undefined)
 
   React.useEffect(() => {
     // Notes: Get breakpoints on mount
@@ -41,7 +41,7 @@ export function useInternalMediaQuery<TTypeBreakpointsOption extends Record<stri
         }
       })
     }
-    return false
+    return undefined
   }
 
   return { breakpointsTrack: matches }

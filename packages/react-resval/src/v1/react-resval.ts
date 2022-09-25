@@ -48,13 +48,14 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
      */
 
     let { breakpointsTrack } = useInternalMediaQuery(breakpointsArbitrary, media)
+    // console.log('🪲 - breakpointsTrack', breakpointsTrack)
 
     /**
      * Prerendering from SSR
      */
 
     if (!breakpointsTrack) {
-      return undefined as any
+      return {} as any
     }
 
     let sortedBreakpointsTrack = sortBreakpointsTrack(breakpointsTrack)
