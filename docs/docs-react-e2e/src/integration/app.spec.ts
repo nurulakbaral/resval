@@ -5,7 +5,7 @@ describe('docs-react', () => {
   /**
    * Default Breakpoints (Media: MIN)
    */
-  beforeEach(() => cy.visit('/__test__'))
+  beforeEach(() => cy.visit('/__test-v0__'))
   describe('should display the appropriate value for Default Breakpoints (Media: MIN)', () => {
     it('should display for first values', () => {
       cy.fixture('db-min-first.json')

@@ -1,5 +1,5 @@
-import { isEmptyObject, isArrayOfNumber, isArrayOfCSSUnits } from '../src/utils'
-import { CSSUnits } from '../src/constants'
+import { isEmptyObject, isArrayOfNumber, isArrayOfCSSUnits } from '../../src/v0.1.0/utils'
+import { CSSUnits } from '../../src/v0.1.0/constants'
 
 describe('Check the `isEmptyObject` utility so that it gives the expected output.', () => {
   test('should return true, because empty object', () => {

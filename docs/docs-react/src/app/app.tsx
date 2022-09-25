@@ -1,7 +1,7 @@
 import { Route, Routes, Link } from 'react-router-dom'
 import Home from './home'
-import About from './about'
-import TestField from './__test__'
+import TestFieldV0 from './__test-v0__'
+import TestFieldV1 from './__test-v1__'
 
 export default function App() {
   return (
@@ -16,20 +16,20 @@ export default function App() {
         }
       />
       <Route
-        path='/about'
+        path='/__test-v0__'
         element={
           <div>
-            <Link to='/'>To Home</Link>
-            <About />
+            <Link to='/'>Home</Link>
+            <TestFieldV0 />
           </div>
         }
       />
       <Route
-        path='/__test__'
+        path='/__test-v1__'
         element={
           <div>
-            <Link to='/'>Test Field</Link>
-            <TestField />
+            <Link to='/'>Home</Link>
+            <TestFieldV1 />
           </div>
         }
       />

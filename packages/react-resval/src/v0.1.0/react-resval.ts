@@ -19,7 +19,7 @@ import { DefaultBreakpoints } from './constants'
  * @docs Thanks to usehooks-ts.com/react-hook/use-media-query.
  */
 
-export function useMediaQuery<TTypeBreakpointsOptions extends Record<string, any> = TDefaultBreakpoints>(
+function useMediaQuery<TTypeBreakpointsOptions extends Record<string, any> = TDefaultBreakpoints>(
   queries: TTypeBreakpointsOptions,
   media: TMedia,
 ) {

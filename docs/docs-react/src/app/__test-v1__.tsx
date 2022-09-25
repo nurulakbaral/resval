@@ -1,4 +1,4 @@
-import { createResponsiveValues } from '@resval/react-responsive-values'
+import { v1 } from '@resval/react-responsive-values'
 
 const breakpoints = {
   base: '0px',
@@ -33,7 +33,7 @@ const utilityValues = {
   } as const,
 }
 
-const useVx = createResponsiveValues({
+const useVx = v1.createResponsiveValues({
   breakpoints: { ...breakpoints },
   media: 'min',
 })
@@ -47,7 +47,7 @@ export function Component() {
   )
 }
 
-export default function Index() {
+export default function V1() {
   const { isMobileView } = useVx(utilityValues)
   return isMobileView ? (
     <>
