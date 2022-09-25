@@ -76,7 +76,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "nx affected --target=lint --fix --parallel --base=main --head=HEAD",
+      "nx affected --target=lint --fix --parallel --base=v1.0-beta/react-resval --head=HEAD",
       "nx format:write --uncommitted"
     ]
   }
