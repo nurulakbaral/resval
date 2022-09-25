@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { setBreakpoints, extendsBreakpoints, sortBreakpointsTrack, trackBreakpoints } from '../src/system'
+import { setBreakpoints, extendsBreakpoints, sortBreakpointsTrack, trackBreakpoints } from '../src/v0.1.0/system'
 import { DefaultBreakpoints } from '../src/v0.1.0/constants'
 
 describe('Check the `setBreakpoints` utility so that it gives the expected output.', () => {
