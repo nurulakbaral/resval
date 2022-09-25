@@ -1,3 +1,3 @@
-export * from './v1/hooks'
+export * as v1 from './v1'
 export * from './react-resval'
 export * from './types'
