@@ -1,5 +1,5 @@
 import { createResponsiveValues } from '@resval/react-responsive-values'
 
-export const useVx = createResponsiveValues({
+export const useVxV0 = createResponsiveValues({
   media: 'min',
 })

@@ -2,6 +2,7 @@ import { Route, Routes, Link } from 'react-router-dom'
 import Home from './home'
 import TestFieldV0 from './__test-v0__'
 import TestFieldV1 from './__test-v1__'
+import Bench from './benchmarking'
 
 export default function App() {
   return (
@@ -30,6 +31,15 @@ export default function App() {
           <div>
             <Link to='/'>Home</Link>
             <TestFieldV1 />
+          </div>
+        }
+      />
+      <Route
+        path='/benchmarking'
+        element={
+          <div>
+            <Link to='/'>Home</Link>
+            <Bench />
           </div>
         }
       />

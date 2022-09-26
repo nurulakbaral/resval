@@ -1,16 +1,16 @@
 import * as React from 'react'
-import { useVx } from '../../hooks/use-vx'
+import { useVxV0 } from '../../hooks/use-vx-v0'
 
 export interface TextProps {
   style: React.CSSProperties
 }
 
 export function Text({ style }: TextProps) {
-  const color = useVx({
+  const color = useVxV0({
     base: 'red',
     md: 'green',
   })
-  const fontSize = useVx({
+  const fontSize = useVxV0({
     base: '24px',
     md: '32px',
   })

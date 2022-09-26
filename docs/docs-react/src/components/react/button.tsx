@@ -1,20 +1,20 @@
 import * as React from 'react'
-import { useVx } from '../../hooks/use-vx'
+import { useVxV0 } from '../../hooks/use-vx-v0'
 
 export interface ButtonProps {
   style: React.CSSProperties
 }
 
 export function Button({ style }: ButtonProps) {
-  const rounded = useVx({
+  const rounded = useVxV0({
     base: '4px',
     md: '8px',
   })
-  const width = useVx({
+  const width = useVxV0({
     base: '200px',
     md: '100%',
   })
-  const backgroundColor = useVx({
+  const backgroundColor = useVxV0({
     base: '#4338ca',
     md: '#6d28d9',
   })
