@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react'
 // v0.1.0
 import { useVxV0 } from '../hooks/use-vx-v0'
