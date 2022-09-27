@@ -48,7 +48,6 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
      */
 
     let { breakpointsTrack } = useInternalMediaQuery(breakpointsArbitrary, media)
-    // console.log('🪲 - breakpointsTrack', breakpointsTrack)
 
     /**
      * Prerendering from SSR
@@ -71,42 +70,3 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
 }
 
 export default createResponsiveValues
-
-/**
- *
- * Types Testing Purpose!
- * Assert for types testing.
- *
- */
-
-// const useVx = createResponsiveValues({
-//   breakpoints: {
-//     base: '0px',
-//     xs: '320px',
-//     sm: '576px',
-//     md: '768px',
-//     lg: '1080px',
-//     xl: '1280px',
-//   },
-//   media: 'min',
-// })
-
-// const utilityValues = {
-//   fontSize: {
-//     base: '12px',
-//     xl: '24px',
-//   } as const,
-//   color: {
-//     base: 'red',
-//     '600px': 'blue',
-//     xl: 'green',
-//   } as const,
-// }
-
-// // eslint-disable-next-line react-hooks/rules-of-hooks
-// const { fontSize, color } = useVx(utilityValues)
-
-// // eslint-disable-next-line @typescript-eslint/no-unused-vars
-// const fontSizeProp: '12px' | '24px' | undefined | null = fontSize
-// // eslint-disable-next-line @typescript-eslint/no-unused-vars
-// const colorProp: 'red' | 'green' | 'blue' = color
