@@ -38,7 +38,7 @@ const useVx = v1.createResponsiveValues({
   media: 'min',
 })
 
-export function Component() {
+function Component() {
   const { fontSize, color, value } = useVx(utilityValues)
   return (
     <div>

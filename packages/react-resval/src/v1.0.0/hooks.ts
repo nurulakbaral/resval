@@ -3,6 +3,8 @@
 import * as React from 'react'
 import type { TBreakpointsDefault, TMedia, TBreakpointsTrack } from './types'
 
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect
+
 export function useInternalMediaQuery<TTypeBreakpointsOption extends Record<string, string> = TBreakpointsDefault>(
   queries: TTypeBreakpointsOption,
   media: TMedia,
@@ -10,7 +12,7 @@ export function useInternalMediaQuery<TTypeBreakpointsOption extends Record<stri
   // Notes: Get initial breakpoints
   let [matches, setMatches] = React.useState<Array<TBreakpointsTrack> | undefined>(undefined)
 
-  React.useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     // Notes: Get breakpoints on mount
     let mediaQueryList = Object.values(queries).map((value) => window.matchMedia(`(${media}-width: ${value})`))
     function handleChange() {
