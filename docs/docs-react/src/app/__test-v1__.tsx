@@ -9,37 +9,39 @@ const breakpoints = {
   xl: '1280px',
 } as const
 
-const utilityValues = {
-  value: {
-    base: 'base',
-    xs: 'xs',
-    sm: 'sm',
-    md: 'md',
-    lg: 'lg',
-    xl: 'xl',
-  } as const,
-  fontSize: {
-    base: '12px',
-    md: '24px',
-  } as const,
-  color: {
-    base: 'red',
-    '600px': 'blue',
-    lg: 'green',
-  } as const,
-  isMobileView: {
-    base: true,
-    md: false,
-  } as const,
-}
-
 const useVx = v1.createResponsiveValues({
   breakpoints: { ...breakpoints },
   media: 'min',
 })
 
+const useResponsiveValues = () => {
+  return useVx({
+    value: {
+      base: 'base',
+      xs: 'xs',
+      sm: 'sm',
+      md: 'md',
+      lg: 'lg',
+      xl: 'xl',
+    } as const,
+    fontSize: {
+      base: '12px',
+      md: '24px',
+    } as const,
+    color: {
+      base: 'red',
+      '600px': 'blue',
+      lg: 'green',
+    } as const,
+    isMobileView: {
+      base: true,
+      md: false,
+    } as const,
+  })
+}
+
 function Component() {
-  const { fontSize, color, value } = useVx(utilityValues)
+  const { fontSize, color, value } = useResponsiveValues()
   return (
     <div>
       <h1 style={{ fontSize, color }}>Hello World: {value}</h1>
@@ -48,7 +50,7 @@ function Component() {
 }
 
 export default function V1() {
-  const { isMobileView } = useVx(utilityValues)
+  const { isMobileView } = useResponsiveValues()
   return isMobileView ? (
     <>
       <Component />

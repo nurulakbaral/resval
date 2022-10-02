@@ -3,6 +3,7 @@
 /* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-empty-function */
 
+import * as React from 'react'
 import type { TOptions, TRecordKeys } from './types'
 import { extendsBreakpoints, setBreakpoints, sortBreakpointsTrack, trackBreakpoints, setCurrentValue } from './system'
 import { BreakpointsDefault } from './constants'
@@ -40,7 +41,10 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
      * `breakpoints` will return an object with keys and appropriate value (CSS Units Rule).
      */
 
-    let breakpointsArbitrary = extendsBreakpoints(breakpoints, breakpointsQueries)
+    let breakpointsArbitrary = React.useMemo(() => {
+      return extendsBreakpoints(breakpoints, breakpointsQueries)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     /**
      * `breakpointsArbitrary` and `breakpointsTrack` variable was guaranteed to be sanitized.
@@ -49,6 +53,38 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
 
     let { breakpointsTrack } = useInternalMediaQuery(breakpointsArbitrary, media)
 
+    let sortedBreakpointsTrack = React.useMemo(() => {
+      if (!breakpointsTrack) {
+        return {} as any
+      }
+
+      return sortBreakpointsTrack(breakpointsTrack)
+    }, [breakpointsTrack])
+
+    let { breakpointsCurrent, breakpointsClosest } = React.useMemo(() => {
+      if (!breakpointsTrack) {
+        return {} as any
+      }
+
+      return trackBreakpoints(sortedBreakpointsTrack, media)
+    }, [breakpointsTrack, sortedBreakpointsTrack])
+
+    // TODO: Cache for any viewport changes.
+    // The reason for setCurrentValue is because user input i.e. breakpointsQueries can get bigger.
+
+    let currentValue = React.useMemo(() => {
+      if (!breakpointsTrack) {
+        return {} as any
+      }
+
+      return setCurrentValue(
+        breakpointsQueries,
+        breakpointsCurrent,
+        breakpointsClosest,
+      ) as TTypeReturnBreakpointsQueries
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [breakpointsCurrent, breakpointsClosest])
+
     /**
      * Prerendering from SSR
      */
@@ -56,14 +92,6 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
     if (!breakpointsTrack) {
       return {} as any
     }
-
-    let sortedBreakpointsTrack = sortBreakpointsTrack(breakpointsTrack)
-    let { breakpointsCurrent, breakpointsClosest } = trackBreakpoints(sortedBreakpointsTrack, media)
-    let currentValue = setCurrentValue(
-      breakpointsQueries,
-      breakpointsCurrent,
-      breakpointsClosest,
-    ) as TTypeReturnBreakpointsQueries
 
     return currentValue
   }
