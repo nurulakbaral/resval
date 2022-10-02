@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { v1 } from '@resval/react-responsive-values'
 
 const breakpoints = {
@@ -9,55 +10,52 @@ const breakpoints = {
   xl: '1280px',
 } as const
 
-const utilityValues = {
-  value: {
-    base: 'base',
-    xs: 'xs',
-    sm: 'sm',
-    md: 'md',
-    lg: 'lg',
-    xl: 'xl',
-  } as const,
-  fontSize: {
-    base: '12px',
-    md: '24px',
-  } as const,
-  color: {
-    base: 'red',
-    '600px': 'blue',
-    lg: 'green',
-  } as const,
-  isMobileView: {
-    base: true,
-    md: false,
-  } as const,
-}
-
 const useVx = v1.createResponsiveValues({
   breakpoints: { ...breakpoints },
   media: 'min',
 })
 
-function Component() {
-  const { fontSize, color, value } = useVx(utilityValues)
-  return (
-    <div>
-      <h1 style={{ fontSize, color }}>Hello World: {value}</h1>
-    </div>
-  )
+const useResponsiveValues = () => {
+  return useVx({
+    value: {
+      base: 'base',
+      xs: 'xs',
+      sm: 'sm',
+      md: 'md',
+      lg: 'lg',
+      xl: 'xl',
+    } as const,
+    fontSize: {
+      base: '12px',
+      md: '24px',
+    } as const,
+    color: {
+      base: 'red',
+      '600px': 'blue',
+      lg: 'green',
+    } as const,
+    isMobileView: {
+      base: true,
+      md: false,
+    } as const,
+  })
 }
 
 export default function Home() {
-  const { isMobileView } = useVx(utilityValues)
-  return isMobileView ? (
-    <>
-      <Component />
-      <h3>Mobile View</h3>
-    </>
-  ) : (
-    <>
-      <Component />
-      <h1>Desktop View</h1>
-    </>
+  const [, forceRender] = React.useState(false)
+  const { fontSize, color, value } = useResponsiveValues()
+  console.log('render')
+  return (
+    <div>
+      <h1
+        style={{
+          fontSize,
+          color,
+        }}
+      >
+        {value}
+      </h1>
+      <button onClick={() => forceRender((r) => !r)}>Render</button>
+    </div>
   )
 }
