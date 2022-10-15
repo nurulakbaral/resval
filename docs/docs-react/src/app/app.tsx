@@ -1,7 +1,7 @@
 import { Route, Routes, Link } from 'react-router-dom'
 import Home from './home'
 import TestFieldV0 from './__test-v0__'
-import TestFieldV1 from './__test-v1__'
+import TestFieldV1 from './__test-latest__'
 import Bench from './benchmarking'
 
 export default function App() {

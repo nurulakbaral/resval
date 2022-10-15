@@ -7,8 +7,8 @@ import {
   isArrayOfCSSUnits,
   isCSSUnits,
   isBreakpointsHaveDiffCSSUnits,
-} from '../../src/v1.0.0/utils'
-import { CSSUnits } from '../../src/v1.0.0/constants'
+} from '../../src/latest/utils'
+import { CSSUnits } from '../../src/latest/constants'
 
 describe('isEmptyObject()', () => {
   it('should return true, because empty object', () => {

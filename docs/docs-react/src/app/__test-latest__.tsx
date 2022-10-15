@@ -1,4 +1,4 @@
-import { v1 } from '@resval/react-responsive-values'
+import { latest } from '@resval/react-responsive-values'
 
 const breakpoints = {
   base: '0px',
@@ -9,7 +9,7 @@ const breakpoints = {
   xl: '1280px',
 } as const
 
-const useVx = v1.createResponsiveValues({
+const useVx = latest.createResponsiveValues({
   breakpoints: { ...breakpoints },
   media: 'min',
 })

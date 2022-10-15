@@ -8,7 +8,7 @@
     "prepare": "husky install",
     "sb:react": "nx run docs-react:storybook",
     "test:all": "nx e2e docs-react-e2e --prod --skip-nx-cache && nx test react-resval --skip-nx-cache",
-    "test:v1": "nx run react-resval:test --test-file=v1.0.0"
+    "test:latest": "nx run react-resval:test --test-file=latest"
   },
   "private": true,
   "dependencies": {

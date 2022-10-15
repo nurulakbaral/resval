@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
-import { v1 } from '@resval/react-responsive-values'
+import { latest } from '@resval/react-responsive-values'
 
-const vx = v1.createResponsiveValues({
+const vx = latest.createResponsiveValues({
   breakpoints: {
     base: '0px',
     xs: '320px',
