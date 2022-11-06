@@ -5,6 +5,8 @@
  * Types Utils
  */
 
+export type TNarrowable = string | number | boolean | symbol | undefined | void | null
+
 export type TRecordKeys = string | number | symbol
 
 export type TPrimitive<T = string> = T & {}

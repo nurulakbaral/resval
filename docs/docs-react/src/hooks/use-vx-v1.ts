@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-const */
+
 import { latest } from '@resval/react-responsive-values'
 
 const vx = latest.createResponsiveValues({
@@ -19,7 +21,7 @@ for (let i = 0; i < 10_000; i++) {
   utilityValues[`fontSize${i}`] = {
     base: '12px',
     md: '14px',
-  } as const
+  }
 }
 
 export function useVxV1() {

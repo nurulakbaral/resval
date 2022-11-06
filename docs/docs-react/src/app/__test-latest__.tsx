@@ -23,20 +23,30 @@ const useResponsiveValues = () => {
       md: 'md',
       lg: 'lg',
       xl: 'xl',
-    } as const,
+    },
     fontSize: {
       base: '12px',
       md: '24px',
-    } as const,
+    },
     color: {
       base: 'red',
       '600px': 'blue',
       lg: 'green',
-    } as const,
+    },
     isMobileView: {
       base: true,
       md: false,
-    } as const,
+    },
+    allValues: {
+      base: {
+        name: 'Nurul',
+        age: 21,
+        address: {
+          street: 'Taloen',
+        },
+        siblings: ['Sister', 'Brother'],
+      },
+    },
   })
 }
 

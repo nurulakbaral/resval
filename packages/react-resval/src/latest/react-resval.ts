@@ -4,7 +4,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 
 import * as React from 'react'
-import type { TOptions, TRecordKeys } from './types'
+import type { TOptions, TRecordKeys, TNarrowable } from './types'
 import { extendsBreakpoints, setBreakpoints, sortBreakpointsTrack, trackBreakpoints, setCurrentValue } from './system'
 import { BreakpointsDefault } from './constants'
 import { useInternalMediaQuery } from './hooks'
@@ -15,8 +15,18 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
   let { breakpoints: breakpointsOption, media = 'min' } = options
   let breakpoints = setBreakpoints(BreakpointsDefault, breakpointsOption)
 
+  // Ref: https://twitter.com/TitianCernicova/status/1504146863318093828
   return function useResponsiveValues<
-    TTypeBreakpointsQueries extends Record<TRecordKeys, Partial<Record<keyof TTypeBreakpointsOption, any>>>,
+    TTypePrimitives extends TNarrowable,
+    TTypeObject extends { [K: TRecordKeys]: TTypePrimitives | TTypeObject | [] | {} },
+    TTypeBreakpointsQueries extends Record<
+      TRecordKeys,
+      /**
+       * TTypeBreakpointsOption will narrow down to `base`, `xs`, etc.
+       * `string` will narrow down to `600px`, `800px`, etc.
+       */
+      Partial<Record<keyof TTypeBreakpointsOption | string, TTypePrimitives | TTypeObject>>
+    >,
     /**
      * TTypeReturnBreakpointsQueries
      *
