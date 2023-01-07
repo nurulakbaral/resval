@@ -15,7 +15,6 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
   let { breakpoints: breakpointsOption, media = 'min' } = options
   let breakpoints = setBreakpoints(BreakpointsDefault, breakpointsOption)
 
-  // Ref: https://twitter.com/TitianCernicova/status/1504146863318093828
   return function useResponsiveValues<
     TTypePrimitives extends TNarrowable,
     TTypeObject extends { [K: TRecordKeys]: TTypePrimitives | TTypeObject | [] | {} },

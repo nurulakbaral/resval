@@ -18,9 +18,13 @@ const vx = latest.createResponsiveValues({
 let utilityValues: any = {}
 
 for (let i = 0; i < 100_000; i++) {
-  utilityValues[`fontSize${i}`] = {
-    base: '12px',
-    md: '14px',
+  utilityValues[`color${i}`] = {
+    base: 'red',
+    xs: 'green',
+    sm: 'blue',
+    md: 'aqua',
+    lg: 'salmon',
+    xl: 'black',
   }
 }
 
