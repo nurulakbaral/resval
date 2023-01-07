@@ -6,7 +6,7 @@ import { useVxV0 } from '../hooks/use-vx-v0'
 import { useVxV1 } from '../hooks/use-vx-v1'
 
 export default function Home() {
-  const [, forceRender] = React.useState(false)
+  const [state, forceRender] = React.useState(0)
 
   // For v1-beta without cache!
   // WIN! 🏆 in initial render
@@ -27,7 +27,8 @@ export default function Home() {
   return (
     <div>
       <h1>Hello World!</h1>
-      <button onClick={() => forceRender((r) => !r)}>Render</button>
+      <button onClick={() => forceRender((r) => ++r)}>Render</button>
+      <h1>state {state}</h1>
     </div>
   )
 }

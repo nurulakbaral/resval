@@ -17,7 +17,7 @@ const vx = latest.createResponsiveValues({
 
 let utilityValues: any = {}
 
-for (let i = 0; i < 10_000; i++) {
+for (let i = 0; i < 100_000; i++) {
   utilityValues[`fontSize${i}`] = {
     base: '12px',
     md: '14px',
@@ -25,7 +25,5 @@ for (let i = 0; i < 10_000; i++) {
 }
 
 export function useVxV1() {
-  return vx({
-    ...utilityValues,
-  })
+  return vx(utilityValues)
 }

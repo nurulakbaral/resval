@@ -26,7 +26,7 @@ export default function App() {
         }
       />
       <Route
-        path='/__test-v1__'
+        path='/__test-latest__'
         element={
           <div>
             <Link to='/'>Home</Link>
