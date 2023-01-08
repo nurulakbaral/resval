@@ -36,12 +36,11 @@ const useResponsiveValues = () => {
       base: true,
       md: false,
     },
-    hello: {},
   })
 }
 
 export default function Home() {
-  const [, forceRender] = React.useState(false)
+  const [state, forceRender] = React.useState(0)
   const { fontSize, color, value } = useResponsiveValues()
   return (
     <div>
@@ -53,7 +52,8 @@ export default function Home() {
       >
         {value}
       </h1>
-      <button onClick={() => forceRender((r) => !r)}>State</button>
+      <h2>{state}</h2>
+      <button onClick={() => forceRender((r) => ++r)}>Click</button>
     </div>
   )
 }
