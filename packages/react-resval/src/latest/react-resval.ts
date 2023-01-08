@@ -26,9 +26,10 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
       TRecordKeys,
       /**
        * TTypeBreakpointsOption will narrow down to `base`, `xs`, etc.
-       * `string` will narrow down to `600px`, `800px`, etc.
+       * `(string & {})` will narrow down to `600px`, `800px`, etc.
+       * Notes: (string & {}) !== ({} & string)
        */
-      Partial<Record<keyof TTypeBreakpointsOption | string, TTypePrimitives | TTypeObject>>
+      Partial<Record<keyof TTypeBreakpointsOption | (string & {}), TTypePrimitives | TTypeObject>>
     >,
     /**
      * TTypeReturnBreakpointsQueries
