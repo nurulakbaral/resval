@@ -77,7 +77,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "nx affected --target=lint --fix --parallel --all",
+      "nx affected --target=lint --fix --parallel --base=main --head=HEAD",
       "nx format:write --uncommitted"
     ]
   }
