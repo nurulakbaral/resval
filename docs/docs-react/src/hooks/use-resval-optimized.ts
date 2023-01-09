@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-const */
 
-import { latest } from '@resval/react-responsive-values'
+import { createResponsiveValues } from '@resval/react-responsive-values'
 
-const vx = latest.createResponsiveValues({
+const vx = createResponsiveValues({
   breakpoints: {
     base: '0px',
     xs: '320px',
@@ -22,12 +22,12 @@ for (let i = 0; i < 100_000; i++) {
     base: 'red',
     xs: 'green',
     sm: 'blue',
-    md: 'aqua',
-    lg: 'salmon',
-    xl: 'black',
+    md: 'salmon',
+    lg: 'aqua',
+    xl: 'gray',
   }
 }
 
-export function useVxV1() {
+export function useVxOptimized() {
   return vx(utilityValues)
 }

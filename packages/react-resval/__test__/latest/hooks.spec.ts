@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 import { renderHook } from '@testing-library/react-hooks'
 import { useInternalMediaQuery } from '../../src/latest/hooks'
-import { BreakpointsDefault } from '../../src/latest/constants'
+import { BreakpointsDefault } from '../../src/constants'
 
 let mockTrueMatches = [
   ['(min-width: 0px)', '(min-width: 320px)', '(min-width: 576px)', '(min-width: 768px)'],

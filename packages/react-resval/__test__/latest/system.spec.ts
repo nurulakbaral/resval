@@ -8,7 +8,7 @@ import {
   trackBreakpoints,
   setCurrentValue,
 } from '../../src/latest/system'
-import { BreakpointsDefault, CSSUnits } from '../../src/latest/constants'
+import { BreakpointsDefault, CSSUnits } from '../../src/constants'
 import { TBreakpointsTrack } from '../../src/latest/types'
 
 describe('setBreakpoints()', () => {

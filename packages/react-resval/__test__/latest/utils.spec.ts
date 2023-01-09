@@ -8,7 +8,7 @@ import {
   isCSSUnits,
   isBreakpointsHaveDiffCSSUnits,
 } from '../../src/latest/utils'
-import { CSSUnits } from '../../src/latest/constants'
+import { CSSUnits } from '../../src/constants'
 
 describe('isEmptyObject()', () => {
   it('should return true, because empty object', () => {
