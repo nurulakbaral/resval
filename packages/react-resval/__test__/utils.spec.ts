@@ -1,14 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-empty-function */
 
-import {
-  isEmptyObject,
-  isObject,
-  isArrayOfCSSUnits,
-  isCSSUnits,
-  isBreakpointsHaveDiffCSSUnits,
-} from '../../src/latest/utils'
-import { CSSUnits } from '../../src/constants'
+import { isEmptyObject, isObject, isArrayOfCSSUnits, isCSSUnits, isBreakpointsHaveDiffCSSUnits } from '../src/utils'
+import { CSSUnits } from '../src/constants'
 
 describe('isEmptyObject()', () => {
   it('should return true, because empty object', () => {
