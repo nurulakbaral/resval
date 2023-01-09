@@ -17,7 +17,7 @@ const vx = createResponsiveValues({
 
 let utilityValues: any = {}
 
-for (let i = 0; i < 100_000; i++) {
+for (let i = 0; i < 1000_000; i++) {
   utilityValues[`color${i}`] = {
     base: 'red',
     xs: 'green',
