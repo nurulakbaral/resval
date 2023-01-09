@@ -28,6 +28,6 @@ for (let i = 0; i < 100_000; i++) {
   }
 }
 
-export function useVxOptimized() {
+export function useVx() {
   return vx(utilityValues)
 }

@@ -1,7 +1,6 @@
 import { Route, Routes, Link } from 'react-router-dom'
 import Home from './home'
-import Optimized from './optimized'
-import Unoptimized from './unoptimized'
+import Resval from './resval'
 
 export default function App() {
   return (
@@ -10,28 +9,17 @@ export default function App() {
         path='/'
         element={
           <div>
-            <Link to='/optimized'>To Optimized</Link>
-            <br />
-            <Link to='/unoptimized'>To Unoptimized</Link>
+            <Link to='/resval'>To Resval</Link>
             <Home />
           </div>
         }
       />
       <Route
-        path='/optimized'
+        path='/resval'
         element={
           <div>
             <Link to='/'>To Home</Link>
-            <Optimized />
-          </div>
-        }
-      />
-      <Route
-        path='/unoptimized'
-        element={
-          <div>
-            <Link to='/'>To Home</Link>
-            <Unoptimized />
+            <Resval />
           </div>
         }
       />
