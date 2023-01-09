@@ -12,10 +12,13 @@ import { useInternalMediaQuery } from './hooks'
 export function createResponsiveValues<TTypeBreakpointsOption extends Record<string, string>>(
   options: TOptions<TTypeBreakpointsOption>,
 ) {
+  /**
+   * Cache the values for every viewport!
+   */
+  const cache = new Map()
   let { breakpoints: breakpointsOption, media = 'min' } = options
   let breakpoints = setBreakpoints(BreakpointsDefault, breakpointsOption)
 
-  // Ref: https://twitter.com/TitianCernicova/status/1504146863318093828
   return function useResponsiveValues<
     TTypePrimitives extends TNarrowable,
     TTypeObject extends { [K: TRecordKeys]: TTypePrimitives | TTypeObject | [] | {} },
@@ -23,9 +26,10 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
       TRecordKeys,
       /**
        * TTypeBreakpointsOption will narrow down to `base`, `xs`, etc.
-       * `string` will narrow down to `600px`, `800px`, etc.
+       * `(string & {})` will narrow down to `600px`, `800px`, etc.
+       * Notes: (string & {}) !== ({} & string)
        */
-      Partial<Record<keyof TTypeBreakpointsOption | string, TTypePrimitives | TTypeObject>>
+      Partial<Record<keyof TTypeBreakpointsOption | (string & {}), TTypePrimitives | TTypeObject>>
     >,
     /**
      * TTypeReturnBreakpointsQueries
@@ -79,31 +83,17 @@ export function createResponsiveValues<TTypeBreakpointsOption extends Record<str
       return trackBreakpoints(sortedBreakpointsTrack, media)
     }, [breakpointsTrack, sortedBreakpointsTrack])
 
-    // TODO: Cache for any viewport changes.
-    // The reason for setCurrentValue is because user input i.e. breakpointsQueries can get bigger.
-
-    let currentValue = React.useMemo(() => {
-      if (!breakpointsTrack) {
-        return {} as any
+    if (breakpointsCurrent) {
+      let currentQuery = breakpointsCurrent.query
+      if (cache.has(currentQuery)) {
+        return cache.get(currentQuery)
       }
-
-      return setCurrentValue(
-        breakpointsQueries,
-        breakpointsCurrent,
-        breakpointsClosest,
-      ) as TTypeReturnBreakpointsQueries
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [breakpointsCurrent, breakpointsClosest])
-
-    /**
-     * Prerendering from SSR
-     */
-
-    if (!breakpointsTrack) {
+      let currentValue = setCurrentValue(breakpointsQueries, breakpointsCurrent, breakpointsClosest)
+      cache.set(currentQuery, currentValue)
+      return currentValue
+    } else {
       return {} as any
     }
-
-    return currentValue
   }
 }
 

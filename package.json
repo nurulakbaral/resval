@@ -7,8 +7,7 @@
     "build": "nx build",
     "prepare": "husky install",
     "sb:react": "nx run docs-react:storybook",
-    "test:all": "nx e2e docs-react-e2e --prod --skip-nx-cache && nx test react-resval --skip-nx-cache",
-    "test:latest": "nx run react-resval:test --test-file=latest"
+    "test": "nx run react-resval:test"
   },
   "private": true,
   "dependencies": {
@@ -77,7 +76,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "nx affected --target=lint --fix --parallel --base=main --head=HEAD",
+      "nx affected --target=lint --fix --parallel --base=feat/add-cache-for-optimizing-rendering --head=HEAD",
       "nx format:write --uncommitted"
     ]
   }

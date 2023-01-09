@@ -1,8 +1,6 @@
 import { Route, Routes, Link } from 'react-router-dom'
 import Home from './home'
-import TestFieldV0 from './__test-v0__'
-import TestFieldV1 from './__test-latest__'
-import Bench from './benchmarking'
+import Resval from './resval'
 
 export default function App() {
   return (
@@ -11,35 +9,17 @@ export default function App() {
         path='/'
         element={
           <div>
-            <Link to='/about'>To About</Link>
+            <Link to='/resval'>To Resval</Link>
             <Home />
           </div>
         }
       />
       <Route
-        path='/__test-v0__'
+        path='/resval'
         element={
           <div>
-            <Link to='/'>Home</Link>
-            <TestFieldV0 />
-          </div>
-        }
-      />
-      <Route
-        path='/__test-v1__'
-        element={
-          <div>
-            <Link to='/'>Home</Link>
-            <TestFieldV1 />
-          </div>
-        }
-      />
-      <Route
-        path='/benchmarking'
-        element={
-          <div>
-            <Link to='/'>Home</Link>
-            <Bench />
+            <Link to='/'>To Home</Link>
+            <Resval />
           </div>
         }
       />
