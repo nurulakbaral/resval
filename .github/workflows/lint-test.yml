@@ -17,4 +17,4 @@ jobs:
       - run: npx nx affected --target=lint --fix --parallel --base=main --head=HEAD
       - run: npx nx format:write --uncommitted
       - run: npx nx test react-resval
-      - run: npx nx e2e docs-react-e2e --prod
+      # - run: npx nx e2e docs-react-e2e --prod

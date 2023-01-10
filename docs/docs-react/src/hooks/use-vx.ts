@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-const */
 
-import { createResponsiveValues } from '@resval/react-responsive-values'
+// dev
+// import { createResponsiveValues } from '@resval/react-responsive-values'
+// prod
+import { createResponsiveValues } from '../../../../dist/packages/react-resval'
 
 const vx = createResponsiveValues({
   breakpoints: {
@@ -17,7 +20,7 @@ const vx = createResponsiveValues({
 
 let utilityValues: any = {}
 
-for (let i = 0; i < 1000_000; i++) {
+for (let i = 0; i < 100_000; i++) {
   utilityValues[`color${i}`] = {
     base: 'red',
     xs: 'green',
@@ -26,6 +29,15 @@ for (let i = 0; i < 1000_000; i++) {
     lg: 'aqua',
     xl: 'gray',
   }
+}
+
+utilityValues['value'] = {
+  base: 'base',
+  xs: 'xs',
+  sm: 'sm',
+  md: 'md',
+  lg: 'lg',
+  xl: 'xl',
 }
 
 export function useVx() {

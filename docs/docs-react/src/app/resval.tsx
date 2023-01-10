@@ -4,7 +4,7 @@ import { useVx } from '../hooks/use-vx'
 
 export default function Resval() {
   const [count, setCount] = React.useState(0)
-  const { color1 } = useVx()
+  const { color1, value } = useVx()
 
   return (
     <div>
@@ -17,6 +17,7 @@ export default function Resval() {
       >
         Count: {count}
       </h1>
+      <h1>{value}</h1>
     </div>
   )
 }
