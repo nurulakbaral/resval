@@ -2,9 +2,9 @@
 /* eslint-disable prefer-const */
 
 // dev
-// import { createResponsiveValues } from '@resval/react-responsive-values'
+import { createResponsiveValues } from '@resval/react-responsive-values'
 // prod
-import { createResponsiveValues } from '../../../../dist/packages/react-resval'
+// import { createResponsiveValues } from '../../../../dist/packages/react-resval'
 
 const vx = createResponsiveValues({
   breakpoints: {
