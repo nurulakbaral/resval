@@ -19,7 +19,7 @@ export function isCSSUnits(value: string): boolean {
   return typeof value === 'string' && CSSUnitsRegex.test(value)
 }
 
-export function isBreakpointsHaveDiffCSSUnits(breakpointsValues: string[]): boolean {
+export function hasDiffCSSUnits(breakpointsValues: string[]): boolean {
   let listOfCSSUnit: string[] = []
   for (let value of breakpointsValues) {
     let val = value.match(/[a-zA-Z]+/g)?.[0] ?? ''

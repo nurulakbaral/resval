@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-empty-function */
 
-import { isEmptyObject, isObject, isArrayOfCSSUnits, isCSSUnits, isBreakpointsHaveDiffCSSUnits } from '../src/utils'
+import { isEmptyObject, isObject, isArrayOfCSSUnits, isCSSUnits, hasDiffCSSUnits } from '../src/utils'
 import { CSSUnits } from '../src/constants'
 
 describe('isEmptyObject()', () => {
@@ -62,14 +62,14 @@ describe('isCSSUnits()', () => {
   })
 })
 
-describe('isBreakpointsHaveDiffCSSUnits()', () => {
+describe('hasDiffCSSUnits()', () => {
   it('should return true, because becase have all same CSS Units', () => {
     CSSUnits.forEach((unit) => {
-      expect(isBreakpointsHaveDiffCSSUnits([`100${unit}`, `200${unit}`, `300${unit}`, `400${unit}`])).toBe(false)
+      expect(hasDiffCSSUnits([`100${unit}`, `200${unit}`, `300${unit}`, `400${unit}`])).toBe(false)
     })
   })
   it('should return false, because have diffrent CSS Units values in same time', () => {
-    expect(isBreakpointsHaveDiffCSSUnits(['100px', '200px', '300rem'])).toBe(true)
-    expect(isBreakpointsHaveDiffCSSUnits(['100px', '200rem', '300rem'])).toBe(true)
+    expect(hasDiffCSSUnits(['100px', '200px', '300rem'])).toBe(true)
+    expect(hasDiffCSSUnits(['100px', '200rem', '300rem'])).toBe(true)
   })
 })
